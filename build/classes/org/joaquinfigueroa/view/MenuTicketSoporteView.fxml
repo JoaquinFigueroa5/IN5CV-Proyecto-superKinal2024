@@ -10,8 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="980.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="org.joaquinfigueroa.controller.MenuTicketSoporteController">
+<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuTicketSoporteController">
    <children>
       <ImageView fitHeight="593.0" fitWidth="980.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,7 +21,7 @@
       <TextField fx:id="tfTicketId" editable="false" layoutX="68.0" layoutY="147.0" prefHeight="39.0" prefWidth="168.0" promptText="Ticket Id" />
       <ComboBox fx:id="cmbClientes" layoutX="276.0" layoutY="147.0" prefHeight="25.0" prefWidth="190.0" />
       <ComboBox fx:id="cmbFacturas" layoutX="490.0" layoutY="147.0" prefHeight="25.0" prefWidth="190.0" />
-      <TableView layoutX="401.0" layoutY="215.0" prefHeight="278.0" prefWidth="499.0">
+      <TableView fx:id="tblTickets" layoutX="401.0" layoutY="215.0" prefHeight="278.0" prefWidth="499.0">
         <columns>
           <TableColumn fx:id="colTicketId" prefWidth="64.0" text="ticketId" />
           <TableColumn fx:id="colDescripcion" prefWidth="213.0" text="descripcion" />
