@@ -1,4 +1,4 @@
-use superkinal;
+use superkinalIN5CV;
 
 -- ----------------------- CLIENTES ----------------------------
 
@@ -60,11 +60,12 @@ delimiter ;
 delimiter $$
 create procedure sp_agregarCargos(in nomCar varchar(30),in descCar varchar(100))
 	begin
-		insert into Cargos (nomCar, descCar) values
-			(nombreCargo, descripcionCargo);
+		insert into Cargos (nombreCargo, descripcionCargo) values
+			(nomCar, descCar);
     end $$
 delimiter ;
 
+call sp_agregarCargos('Supervisor', 'Supervisa la actividad de los empleados');
 
 -- listar
 delimiter $$
@@ -113,11 +114,12 @@ delimiter ;
 delimiter $$
 create procedure sp_agregarEmpleados(in nomEmp varchar(30),in apeEmp varchar(30), in sue decimal(10, 2), in hoEn time, in hoSa time, in carId int, in encarId int)
 	begin
-		insert into Empleados (nomEmp, apeEmp, sue, hoEn, hoSa, carid, encarId) values
-			(nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargoId, encargadoId);
+		insert into Empleados (nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargoId, encargadoId) values
+			(nomEmp, apeEmp, sue, hoEn, hoSa, carid, encarId);
     end $$
 delimiter ;
 
+call sp_agregarEmpleados('Saul', 'De Leon', 3201.10, '08:00:00', '16:00:00', 1, null);
 
 -- listar
 delimiter $$
@@ -171,12 +173,14 @@ delimiter ;
 delimiter $$
 create procedure sp_agregarFacturas(in fe date, in ho time, in tot decimal(10, 2), in cliId int, in empId int)
 	begin
-		insert into Facturas (fe, ho, tot, cliId, empId) values
-			(fecha, hora, total, clienteId, empleadoId);
+		insert into Facturas (fecha, hora, total, clienteId, empleadoId) values
+			(fe, ho, tot, cliId, empId);
     end $$
 delimiter ;
 
+call sp_agregarFacturas('2020-03-21', '12:00:00', 10.20, 1, 2);
 
+-- select * from Empleados;
 -- listar
 delimiter $$
 create procedure sp_listarFacturas()
@@ -279,25 +283,29 @@ delimiter ;
 
 -- ------------------- Ticket Soporte ------------------------------
 DELIMITER $$
-create procedure sp_AgregarTicketSoporte(in des varchar(250), in est varchar(30), in cliId int, in facId int)
+create procedure sp_AgregarTicketSoporte(in des varchar(250), in cliId int, in facId int)
 begin
 	insert into TicketSoporte(descripcionTicket,estatus,clienteId,facturaId) values
-		(des,est,cliId,facId);
+		(des, 'Recien Creado', cliId,facId);
 end $$
 DELIMITER ;
  
+call sp_AgregarTicketSoporte('Problema con el Wi-fi',  1, 3);
+
+-- select * from Facturas;
+
+ 
 DELIMITER $$
-create procedure sp_ListarTicketSoporte()
+create procedure sp_listarTicketSoporte()
 begin
-	select 
-		TicketSoporte.ticketSoporteId,
-        TicketSoporte.descripcionTicket,
-        TicketSoporte.estatus,
-        TicketSoporte.clienteId,
-        TicketSoporte.facturaId
-			from TicketSoporte;
-end $$
+	select TS.ticketSoporteId, TS.descripcionTicket, TS.estatus,
+		concat('Id: ', C.clienteId, ' - ', C.nombre, ' ', C.apellido) as 'Cliente',
+        TS.facturaId from TicketSoporte TS
+    join Clientes C on TS.clienteId = C.clienteId;
+end$$
 DELIMITER ;
+
+select * from TicketSoporte;
  
 DELIMITER $$
 create procedure sp_EliminarTicketSoporte(in tikId int)
