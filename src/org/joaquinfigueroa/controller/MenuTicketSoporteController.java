@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -45,7 +45,7 @@ public class MenuTicketSoporteController implements Initializable {
     ComboBox cmbEstatus, cmbClientes;
     
     @FXML 
-    Button btnRegresar, btnGuardar;
+    Button btnRegresar, btnGuardar, btnVaciar;
     
     @FXML
     TableView tblTickets;
@@ -67,8 +67,20 @@ public class MenuTicketSoporteController implements Initializable {
             if(tfTicketId.getText().equals("")){
                 agregarTicket();
                 cargarDatos();
+            }else{
+                editarTicket();
             }
+        }else if(event.getSource() == btnVaciar){
+            vaciarCampos();
         }
+    }
+    
+    public void vaciarCampos(){
+        tfTicketId.clear();
+        taDescripcion.clear();
+        cmbEstatus.getSelectionModel().clearSelection();
+        cmbClientes.getSelectionModel().clearSelection();
+        
     }
     
     public void cargarDatos(){
@@ -97,9 +109,14 @@ public class MenuTicketSoporteController implements Initializable {
         int index = 0;
         for(int i = 0 ; i <= cmbClientes.getItems().size() ; i++){
             String clienteCmb = cmbClientes.getItems().get(i).toString();
-            String clienteTbl = ((TicketSoporte) tblTickets.getSelectionModel().getSelectedItems());
+            String clienteTbl = ((TicketSoporte)tblTickets.getSelectionModel().getSelectedItems()).getCliente();
+            if(clienteCmb.equals(clienteTbl)){
+                index = i;
+                break;
+            }
             
         }
+        return index;
     }
     
     public void cargarCMBEstatus(){
@@ -119,7 +136,7 @@ public class MenuTicketSoporteController implements Initializable {
                 int ticketSoporteId = resultset.getInt("ticketSoporteId");
                 String descripcion = resultset.getString("descripcionTicket");
                 String estatus = resultset.getString("estatus");
-                String cliente = resultset.getString("cleinte");
+                String cliente = resultset.getString("cliente");
                 int facturaId = resultset.getInt("facturaId");
                 
                 tickets.add(new TicketSoporte(ticketSoporteId, descripcion, estatus, cliente, facturaId));
@@ -187,11 +204,11 @@ public class MenuTicketSoporteController implements Initializable {
     public void agregarTicket(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_agregarTicketSoporte(?, ?, ?)";
+            String sql = "call sp_AgregarTicketSoporte(?, ?, ?)";
             statement = conexion.prepareStatement(sql);
             statement.setString(1, taDescripcion.getText());
             statement.setInt(2, ((Cliente)cmbClientes.getSelectionModel().getSelectedItem()).getClienteId());
-            statement.setInt(3, 1);
+            statement.setInt(3, 3);
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -218,9 +235,22 @@ public class MenuTicketSoporteController implements Initializable {
             statement.setInt(1, Integer.parseInt(tfTicketId.getText()));
             statement.setString(2, taDescripcion.getText());
             statement.setString(3, cmbEstatus.getSelectionModel().getSelectedItem().toString());
-            statement.setint(4, (Cliente)cmbClientes.getSelectionModel().getSelectedItem().getClass())
+            statement.setInt(4, ((Cliente)cmbClientes.getSelectionModel().getSelectedItem()).getClienteId());
+            statement.setInt(5, 9);
+            statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(conexion != null){
+                conexion.close();
+                }
+                if(statement != null){
+                    statement.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -231,6 +261,7 @@ public class MenuTicketSoporteController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         cargarCMBEstatus();
         cmbClientes.setItems(listarClientes());
+        cargarDatos();
     }    
 
     public Main getStage() {
