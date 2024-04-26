@@ -92,6 +92,14 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void menuCargosView(){
+        try{
+            
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
    
 
     /**
