@@ -92,6 +92,15 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void menuCargosView(){
+        try{
+            MenuCargosController menuCargosView = (MenuCargosController)switchScene("MenuCargosView.fxml", 595, 524);
+            menuCargosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
    
 
     /**
@@ -101,6 +110,7 @@ public class Main extends Application {
        
         launch(args);
     }
+
 
    
 
