@@ -101,6 +101,15 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void menuEditarCargosView(){
+        try{
+            MenuEditarCargosController menuEditarCargosView = (MenuEditarCargosController)switchScene("MenuEditarCargosView.fxml", 595, 524);
+            menuEditarCargosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
    
 
     /**

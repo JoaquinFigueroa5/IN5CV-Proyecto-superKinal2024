@@ -5,12 +5,15 @@
  */
 package org.joaquinfigueroa.dto;
 
+import org.joaquinfigueroa.model.Cargo;
+
 /**
  *
  * @author Joaki
  */
 public class CargoDTO {
     private static CargoDTO instance;
+    private Cargo cargo;
 
     public CargoDTO() {
     }
@@ -22,13 +25,17 @@ public class CargoDTO {
         return instance;
     }
 
-    public static CargoDTO getInstance() {
-        return instance;
+    public Cargo getCargo() {
+        return cargo;
     }
 
-    public static void setInstance(CargoDTO instance) {
-        CargoDTO.instance = instance;
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
     }
+
+    
+
+    
     
     
 }

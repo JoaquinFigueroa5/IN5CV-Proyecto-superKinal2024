@@ -11,6 +11,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import org.joaquinfigueroa.dto.CargoDTO;
+import org.joaquinfigueroa.model.Cargo;
 import org.joaquinfigueroa.system.Main;
 /**
  *
@@ -21,6 +24,9 @@ public class MenuPrincipalController implements Initializable{
     
     @FXML
     MenuItem btnMenuClientes, btnMenuCargos, btnTicketSoporte;
+    
+    @FXML
+    TableView tblCargos;
     
     
 

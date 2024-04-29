@@ -24,6 +24,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.joaquinfigueroa.dao.Conexion;
+import org.joaquinfigueroa.dto.CargoDTO;
 import org.joaquinfigueroa.model.Cargo;
 import org.joaquinfigueroa.model.Cliente;
 import org.joaquinfigueroa.system.Main;
@@ -40,7 +41,7 @@ public class MenuCargosController implements Initializable {
     private static ResultSet resultset = null;
     
     @FXML
-    TextField tfNombreCargo;
+    TextField tfNombreCargo, tfCargoId;
     
     @FXML
     TextArea taDescripcion;
@@ -52,7 +53,7 @@ public class MenuCargosController implements Initializable {
     TableView tblCargos;
     
     @FXML
-    Button btnAgregar, btnRegresar;
+    Button btnAgregar, btnRegresar, btnEditar;
     
     
     
@@ -124,6 +125,7 @@ public class MenuCargosController implements Initializable {
         }
     }
      
+     
     public void vaciarCampos(){
         tfNombreCargo.clear();
         taDescripcion.clear();
@@ -139,6 +141,9 @@ public class MenuCargosController implements Initializable {
             cargarLista();
         }else if(event.getSource() == btnRegresar){
             stage.menuPrincipalView();
+        }else if(event.getSource() == btnEditar){
+            CargoDTO.getCargoDTO().setCargo((Cargo)tblCargos.getSelectionModel().getSelectedItem());
+            stage.menuEditarCargosView();
         }
     }
     

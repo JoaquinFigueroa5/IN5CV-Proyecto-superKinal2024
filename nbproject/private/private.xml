@@ -4,10 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuPrincipalController.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/Cliente.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuCargosController.java</file>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuAgregarClientesController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/dao/Conexion.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/dto/CargoDTO.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/view/MenuCargosView.fxml</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/system/Main.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/dto/ClienteDTO.java</file>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuTicketSoporteController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/TicketSoporte.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/Cargo.java</file>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuClientesController.java</file>
         </group>
     </open-files>
