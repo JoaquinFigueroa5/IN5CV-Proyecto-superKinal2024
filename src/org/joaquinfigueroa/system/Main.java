@@ -110,6 +110,25 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void menuDistribuidoresView(){
+        try{
+            MenuDistribuidoresController menuDistribuidoresView = (MenuDistribuidoresController)switchScene("MenuDistribuidoresView.fxml", 832, 567);
+            menuDistribuidoresView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formDistribuidoresView(int op){
+        try{
+            FormDistribuidoresController formDistribuidoresView = (FormDistribuidoresController)switchScene("FormDistribuidoresView.fxml", 477, 668);
+            formDistribuidoresView.setOp(op);
+            formDistribuidoresView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
    
 
     /**
