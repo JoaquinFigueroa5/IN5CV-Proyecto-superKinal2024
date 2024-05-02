@@ -129,6 +129,25 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void menuCategoriaProductosView(){
+        try{
+            MenuCategoriaProductosController menuCategoriaProductosView = (MenuCategoriaProductosController)switchScene("MenuCategoriaProductosView.fxml", 884, 616);
+            menuCategoriaProductosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formCategoriaProductosView(int op){
+        try{
+            FormCategoriaProductosController formCategoriaProductosView = (FormCategoriaProductosController)switchScene("FormCategoriaProductosView.fxml", 477, 668);
+            formCategoriaProductosView.setOp(op);
+            formCategoriaProductosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
    
 
     /**
