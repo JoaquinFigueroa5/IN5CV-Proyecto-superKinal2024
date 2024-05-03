@@ -7,18 +7,17 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="668.0" prefWidth="477.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.joaquinfigueroa.controller.FormCategoriaProductosController">
+<AnchorPane id="AnchorPane" prefHeight="668.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.FormCategoriaProductosController">
    <children>
       <ImageView fitHeight="668.0" fitWidth="477.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/FormCategoriaProdcutoView.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tfCategoriaProductosId" layoutX="36.0" layoutY="120.0" prefHeight="27.0" prefWidth="319.0" promptText="Id de la categoria del producto" />
+      <TextField fx:id="tfCategoriaProductosId" editable="false" layoutX="36.0" layoutY="120.0" prefHeight="27.0" prefWidth="319.0" promptText="Id de la categoria del producto" />
       <TextField fx:id="tfNombreCategoria" layoutX="36.0" layoutY="256.0" prefHeight="27.0" prefWidth="273.0" />
       <TextArea fx:id="taDescripcionCategoria" layoutX="27.0" layoutY="378.0" prefHeight="180.0" prefWidth="319.0" wrapText="true" />
-      <Button fx:id="btnAgregar" layoutX="59.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="90.0" text="Agregar" />
-      <Button fx:id="btnCancelar" layoutX="196.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="90.0" text="Cancelar" />
+      <Button fx:id="btnAgregar" layoutX="59.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="90.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Agregar" />
+      <Button fx:id="btnCancelar" layoutX="196.0" layoutY="585.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="90.0" style="-fx-background-color: #237092; -fx-background-radius: 10;" text="Cancelar" />
    </children>
 </AnchorPane>

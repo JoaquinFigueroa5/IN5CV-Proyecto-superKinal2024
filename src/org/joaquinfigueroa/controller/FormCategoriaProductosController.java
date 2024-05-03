@@ -92,7 +92,7 @@ public class FormCategoriaProductosController implements Initializable {
                 stage.menuCategoriaProductosView();
             }
             
-            stage.menuClientesView();
+            stage.menuCategoriaProductosView();
         }
       
     }

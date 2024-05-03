@@ -1,4 +1,4 @@
-drop database if exists superKinalIN5CV;
+-- drop database if exists superKinalIN5CV;
 
 create database if not exists superkinalIN5CV;
  

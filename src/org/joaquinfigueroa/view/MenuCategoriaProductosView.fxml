@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuCategoriaProductosController">
+<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuCategoriaProductosController">
    <children>
       <ImageView fitHeight="616.0" fitWidth="884.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -37,11 +37,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnAgregar" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Agregar" />
-            <Button fx:id="btnEditar" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #237092; -fx-background-radius: 10;" text="Editar" GridPane.rowIndex="1" />
-            <Button fx:id="btnEliminar" layoutX="10.0" layoutY="136.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Eliminar" GridPane.rowIndex="2" />
-            <Button fx:id="btnReporte" layoutX="10.0" layoutY="228.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #237092; -fx-background-radius: 10;" text="Reporte" GridPane.rowIndex="3" />
-            <Button fx:id="btnRegresar" layoutX="10.0" layoutY="319.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Regresar" GridPane.rowIndex="4" />
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Agregar" />
+            <Button fx:id="btnEditar" layoutX="10.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #237092; -fx-background-radius: 10;" text="Editar" GridPane.rowIndex="1" />
+            <Button fx:id="btnEliminar" layoutX="10.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Eliminar" GridPane.rowIndex="2" />
+            <Button fx:id="btnReporte" layoutX="10.0" layoutY="228.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #237092; -fx-background-radius: 10;" text="Reporte" GridPane.rowIndex="3" />
+            <Button fx:id="btnRegresar" layoutX="10.0" layoutY="319.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Regresar" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <TextField fx:id="tfCategoriaProductoId" layoutX="34.0" layoutY="66.0" prefHeight="25.0" prefWidth="255.0" promptText="Ingrese el id de la categoria del prodcucto" />

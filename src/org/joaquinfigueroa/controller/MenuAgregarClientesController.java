@@ -111,7 +111,7 @@ public class MenuAgregarClientesController implements Initializable {
                     statement.close();
                 }
             }catch(SQLException e){
-                
+                System.out.println(e.getMessage());
             }
         }
     }

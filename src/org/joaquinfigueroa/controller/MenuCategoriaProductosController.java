@@ -90,12 +90,12 @@ public class MenuCategoriaProductosController implements Initializable {
     
     public void cargarLista(){
         tblCategoriaProductos.setItems(listarCategoriaProductos());
-        colCategoriaProductosId.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, Integer>("colCategoriaProductosId"));
-        colNombreCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("colNombreCategoria"));
-        colDescripcionCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("colDescripcionCategoria"));
+        colCategoriaProductosId.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, Integer>("categoriaProductosId"));
+        colNombreCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("nombreCategoria"));
+        colDescripcionCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("descripcionCategoria"));
     }
     
-    public void eliminarCliente(int catProId){
+    public void eliminarCategoriaProducto(int catProId){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_eliminarCategoriaProductos(?)";
@@ -180,7 +180,7 @@ public class MenuCategoriaProductosController implements Initializable {
             stage.menuPrincipalView();
         }else if(event.getSource() == btnEliminar){
             int catProId = ((CategoriaProducto)tblCategoriaProductos.getSelectionModel().getSelectedItem()).getCategoriaProductosId();
-            eliminarCliente(catProId);
+            eliminarCategoriaProducto(catProId);
             cargarLista();
         }else if (event.getSource() == btnBuscar){
             tblCategoriaProductos.getItems().clear();
@@ -188,9 +188,9 @@ public class MenuCategoriaProductosController implements Initializable {
                 cargarLista();
             }else{
                 tblCategoriaProductos.setItems(listarCategoriaProductos());
-                colCategoriaProductosId.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, Integer>("colCategoriaProductosId"));
-                colNombreCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("colNombreCategoria"));
-                colDescripcionCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("colDescripcionCategoria"));
+                colCategoriaProductosId.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, Integer>("categoriaProductosId"));
+                colNombreCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("nombreCategoria"));
+                colDescripcionCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("descripcionCategoria"));
             }
         }
     }

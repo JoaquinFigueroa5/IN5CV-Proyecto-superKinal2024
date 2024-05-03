@@ -121,14 +121,29 @@ create procedure sp_agregarEmpleados(in nomEmp varchar(30),in apeEmp varchar(30)
     end $$
 delimiter ;
 
-call sp_agregarEmpleados('Saul', 'De Leon', 3452.20, '08:00:00', '16:00:00', 1, null);
+call sp_agregarEmpleados('Sebastian', 'Lopez', 2043.26, '05:00:00', '21:00:00', 1, 1);
 
 -- listar
 delimiter $$
 create procedure sp_listarEmpleados()
 	begin
-		select * from Empleados;
+		select E1.empleadoId, E1.nombreEmpleado as 'Empleado', E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
+        C.nombreCargo as 'cargo',
+        E2.nombreEmpleado as 'encargado' from Empleados E1
+        join Cargos C on C.cargoId = E1.cargoId
+        left join Empleados E2 on E1.encargadoId = E2.empleadoId;
     end $$
+delimiter ;
+
+
+delimiter $$
+create procedure sp_listarCargosEncargados()
+	begin
+		select concat('Id: ', E.empleadoId, ' - ', E.nombreEmpleado) as 'Empleado',
+			concat('Id: ', C.cargoId, ' - ', C.nombreCargo) 'Cargo' from Empleados E
+        join Cargos C on C.cargoId = E.cargoId
+        where E.encargadoId is null;
+    end$$
 delimiter ;
 
 
@@ -154,12 +169,12 @@ delimiter ;
 
 -- editar
 delimiter $$
-create procedure sp_editarEmpleados(in empId int, in nomEmp varchar(30),in apeEmp varchar(30), in sue decimal(10, 2), in hoEn time, in hoSa time, in carId int, in encarId int)
+create procedure sp_editarEmpleados(in empId int, in nomEmp varchar(30),in apeEmp varchar(30), in sue decimal(10, 2), in hoEn time, in hoSa time, in carId int, encarId int)
 	begin
 		update Empleados
 			set 
             nombreEmpleado = nomEmp,
-            apeEmp = apellidoEmpleado,
+            apellidoEmpleado = apeEmp,
             sueldo = suel,
             horaEntrada = hoEn,
             horaSalida = hoSa,
@@ -487,7 +502,7 @@ DELIMITER $$
 create procedure sp_eliminarCategoriaProductos(catProId int)
 	begin 
 		delete from CategoriaProductos
-        where catProId = categoriaProductoId;
+        where catProId = categoriaProductosId;
     end $$
 DELIMITER ;
 

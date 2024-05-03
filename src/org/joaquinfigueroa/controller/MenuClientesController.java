@@ -210,7 +210,7 @@ public class MenuClientesController implements Initializable {
                 colNIT.setCellValueFactory(new PropertyValueFactory<Cliente, String>("NIT"));
             }
         }
-    }
+    }   
 } 
     
 
