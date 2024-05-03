@@ -175,7 +175,7 @@ create procedure sp_editarEmpleados(in empId int, in nomEmp varchar(30),in apeEm
 			set 
             nombreEmpleado = nomEmp,
             apellidoEmpleado = apeEmp,
-            sueldo = suel,
+            sueldo = sue,
             horaEntrada = hoEn,
             horaSalida = hoSa,
             cargoId = carId,
