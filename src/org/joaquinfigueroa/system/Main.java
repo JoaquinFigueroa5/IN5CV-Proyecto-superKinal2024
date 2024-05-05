@@ -176,6 +176,24 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void menuCompraView(){
+        try{
+            MenuComprasController menuComprasView = (MenuComprasController)switchScene("MenuComprasView.fxml", 980, 593);
+            menuComprasView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuPromocionView(){
+        try{
+            MenuPromocionesController menuPromocionesview = (MenuPromocionesController)switchScene("MenuPromocionesView.fxml", 980, 593);
+            menuPromocionesview.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
    
 
     /**

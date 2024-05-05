@@ -23,7 +23,7 @@ public class MenuPrincipalController implements Initializable{
     private Main stage;
     
     @FXML
-    MenuItem btnMenuClientes, btnMenuCargos, btnTicketSoporte, btnDistribuidores, btnCategoriaProductos, btnEmpleados;
+    MenuItem btnMenuClientes, btnMenuCargos, btnTicketSoporte, btnDistribuidores, btnCategoriaProductos, btnEmpleados, btnFacturas, btnCompras, btnPromociones;
     
     @FXML
     TableView tblCargos;
@@ -60,6 +60,12 @@ public class MenuPrincipalController implements Initializable{
             stage.menuCategoriaProductosView();
         }else if(event.getSource() == btnEmpleados){
             stage.menuEmpleadosView();
+        }else if(event.getSource() == btnFacturas){
+            stage.menuFacturaView();
+        }else if(event.getSource() == btnCompras){
+            stage.menuCompraView();
+        }else if(event.getSource() == btnPromociones){
+            stage.menuPromocionView();
         }
         
     }

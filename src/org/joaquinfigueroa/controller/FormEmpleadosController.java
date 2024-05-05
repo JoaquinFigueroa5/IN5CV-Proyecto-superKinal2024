@@ -73,7 +73,7 @@ public class FormEmpleadosController implements Initializable {
         return stage;
     }
 
-        public void setStage(Main stage) {
+    public void setStage(Main stage) {
         this.stage = stage;
     }
 

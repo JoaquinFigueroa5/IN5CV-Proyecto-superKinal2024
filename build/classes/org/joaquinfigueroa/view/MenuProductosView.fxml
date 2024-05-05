@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="884.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="org.joaquinfigueroa.controller.MenuProductosController">
+   <children>
+      <ImageView fitHeight="616.0" fitWidth="884.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/MenuProductos.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="26.0" layoutY="134.0" prefHeight="25.0" prefWidth="180.0" />
+      <TextField layoutX="236.0" layoutY="134.0" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="397.0" layoutY="134.0" prefHeight="25.0" prefWidth="191.0" />
+      <TextField layoutX="627.0" layoutY="134.0" prefHeight="25.0" prefWidth="204.0" />
+      <TextField layoutX="259.0" layoutY="234.0" prefHeight="25.0" prefWidth="152.0" />
+      <TextArea layoutX="36.0" layoutY="234.0" prefHeight="79.0" prefWidth="191.0" />
+      <ComboBox layoutX="442.0" layoutY="234.0" prefHeight="25.0" prefWidth="191.0" />
+      <ComboBox layoutX="659.0" layoutY="234.0" prefHeight="25.0" prefWidth="191.0" />
+      <TableView layoutX="97.0" layoutY="330.0" prefHeight="292.0" prefWidth="649.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="productoId" />
+          <TableColumn prefWidth="64.0" text="nombre" />
+            <TableColumn prefWidth="81.0" text="descripcion" />
+            <TableColumn prefWidth="57.0" text="stock" />
+            <TableColumn prefWidth="65.0" text="pUnitario" />
+            <TableColumn prefWidth="55.0" text="pMayor" />
+            <TableColumn prefWidth="84.0" text="pCompra" />
+            <TableColumn prefWidth="84.0" text="distribuidor" />
+            <TableColumn prefWidth="83.0" text="categoria" />
+        </columns>
+      </TableView>
+      <TextField editable="false" layoutX="259.0" layoutY="288.0" prefHeight="25.0" prefWidth="152.0" promptText="Id del producto" />
+   </children>
+</AnchorPane>
