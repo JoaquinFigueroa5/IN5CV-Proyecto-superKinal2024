@@ -194,6 +194,15 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void menuProductoView(){
+        try{
+            MenuProductosController menuProductosView = (MenuProductosController)switchScene("MenuProductosView.fxml", 884, 616);
+            menuProductosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
    
 
     /**

@@ -91,8 +91,6 @@ public class MenuTicketSoporteController implements Initializable {
         colCliente.setCellValueFactory(new PropertyValueFactory<TicketSoporte, String>("cliente"));
         colFactura.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer>("facturaId"));
         tblTickets.getSortOrder().add(colTicketId);
-
-
     }
     
     public void cargarDatosEditar(){

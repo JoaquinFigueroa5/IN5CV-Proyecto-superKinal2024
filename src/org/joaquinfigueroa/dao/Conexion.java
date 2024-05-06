@@ -19,7 +19,7 @@ public class Conexion {
     private String user = "root";
     private String password = "admin";
     
-    private Conexion(){
+    public Conexion(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
         }catch(ClassNotFoundException e){

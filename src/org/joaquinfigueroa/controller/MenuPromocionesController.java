@@ -117,7 +117,7 @@ public class MenuPromocionesController implements Initializable {
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_agregarPromociones(?, ?, ?, ?, ?)";
             statement = conexion.prepareStatement(sql);
-            statement.setString(1, tfPrecio.getText());
+            statement.setDouble(1, Double.parseDouble(tfPrecio.getText()));
             statement.setString(2, taDescripcion.getText());
             statement.setString(3, tfFechaInicio.getText());
             statement.setString(4, tfFechaFinalizacion.getText());
@@ -146,7 +146,7 @@ public class MenuPromocionesController implements Initializable {
             String sql = "call sp_editarPromociones(?, ?, ?, ?, ?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfPromocionId.getText()));
-            statement.setString(2, tfPrecio.getText());
+            statement.setDouble(2, Double.parseDouble(tfPrecio.getText()));
             statement.setString(3, taDescripcion.getText());
             statement.setString(4, tfFechaInicio.getText());
             statement.setString(5, tfFechaFinalizacion.getText());
