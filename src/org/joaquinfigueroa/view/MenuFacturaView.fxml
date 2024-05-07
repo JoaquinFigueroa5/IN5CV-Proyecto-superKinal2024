@@ -36,5 +36,6 @@
       <Button fx:id="btnRegresar" layoutX="574.0" layoutY="528.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Regresar" />
       <Button fx:id="btnEliminar" layoutX="700.0" layoutY="528.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #237092; -fx-background-radius: 10;" text="Eliminar" />
       <TextField fx:id="tfFecha" layoutX="266.0" layoutY="158.0" />
+      <Button fx:id="btnTotal" layoutX="820.0" layoutY="528.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Total" />
    </children>
 </AnchorPane>

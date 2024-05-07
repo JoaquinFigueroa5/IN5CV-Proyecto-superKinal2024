@@ -76,6 +76,7 @@ public class MenuFacturaController implements Initializable {
         }
     }
     
+    
     public void vaciarCampos(){
         tfFecha.clear();
         tfFacturaId.clear();

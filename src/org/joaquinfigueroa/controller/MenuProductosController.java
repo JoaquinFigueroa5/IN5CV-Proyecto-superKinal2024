@@ -135,9 +135,9 @@ public class MenuProductosController implements Initializable {
                 double precioVentaUnitario = resultset.getDouble("precioVentaUnitario");
                 double precioVentaMayor = resultset.getDouble("precioVentaMayor");
                 double precioCompra = resultset.getDouble("precioCompra");
-               // byte[] bytesImagen = resultset.getBytes("imagenProducto");
+                byte[] bytesImagen = resultset.getBytes("imagenProducto");
                 String distribuidor = resultset.getString("distribuidor");
-                String categoriaProductoS = resultset.getString("categoriaProductos");
+                String categoriaProductoS = resultset.getString("categoria");
                 
                 productos.add(new Producto(productoId, nombre, descripcion, stock, precioVentaUnitario, precioVentaMayor, precioCompra, distribuidor, categoriaProductoS));
             }
