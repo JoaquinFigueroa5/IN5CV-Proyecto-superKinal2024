@@ -51,6 +51,5 @@
       <Button fx:id="btnEliminar" layoutX="102.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-radius: 10; -fx-background-color: #237092;" text="Eliminar" />
       <Button fx:id="btnVaciar" layoutX="168.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-radius: 10; -fx-background-color: #F98F4B;" text="Vaciar" />
       <Button fx:id="btnRegresar" layoutX="105.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-background-radius: 10; -fx-background-color: #F98F4B;" text="Regresar" />
-      <ImageView fx:id="imgProductos" fitHeight="150.0" fitWidth="200.0" layoutX="16.0" layoutY="429.0" pickOnBounds="true" smooth="false" />
    </children>
 </AnchorPane>

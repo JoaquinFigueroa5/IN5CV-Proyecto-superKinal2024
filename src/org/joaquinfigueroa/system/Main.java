@@ -203,6 +203,15 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void menuDetalleFacturasView(){
+        try{
+            MenuDetalleFacturaController menuDetalleFacturasView = (MenuDetalleFacturaController)switchScene("MenuDetalleFacturaView", 980, 593);
+            menuDetalleFacturasView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
    
     /**
      * @param args the command line arguments

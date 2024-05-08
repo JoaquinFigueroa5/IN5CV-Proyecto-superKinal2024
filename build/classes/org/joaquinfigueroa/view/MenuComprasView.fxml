@@ -8,8 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="980.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="org.joaquinfigueroa.controller.MenuComprasController">
+<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuComprasController">
    <children>
       <ImageView fitHeight="593.0" fitWidth="980.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,7 +18,7 @@
       <TextField fx:id="tfCompraId" editable="false" layoutX="42.0" layoutY="130.0" prefHeight="26.0" prefWidth="181.0" promptText="Id de la compra" />
       <TextField fx:id="tfFecha" layoutX="42.0" layoutY="244.0" prefHeight="18.0" prefWidth="181.0" />
       <TextField fx:id="tfTotal" layoutX="42.0" layoutY="357.0" prefHeight="18.0" prefWidth="181.0" />
-      <TableView fx:id="tblCompras" layoutX="317.0" layoutY="121.0" prefHeight="322.0" prefWidth="225.0">
+      <TableView fx:id="tblCompras" layoutX="317.0" layoutY="121.0" onMouseClicked="#cargarDatosEditar" prefHeight="322.0" prefWidth="225.0">
         <columns>
           <TableColumn fx:id="colCompraId" prefWidth="75.0" text="compraId" />
           <TableColumn fx:id="colFecha" prefWidth="75.0" text="fecha" />

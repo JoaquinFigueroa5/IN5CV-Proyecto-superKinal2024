@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -90,8 +92,8 @@ public class MenuFacturaController implements Initializable {
     public void cargarDatos(){
         tblFacturas.setItems(listarFacturas());
         colFacturaId.setCellValueFactory(new PropertyValueFactory<Factura, Integer>("facturaId"));
-        colFecha.setCellValueFactory(new PropertyValueFactory<Factura, String>("fecha"));
-        colHora.setCellValueFactory(new PropertyValueFactory<Factura, String>("hora"));
+        colFecha.setCellValueFactory(new PropertyValueFactory<Factura, LocalDate>("fecha"));
+        colHora.setCellValueFactory(new PropertyValueFactory<Factura, LocalTime>("hora"));
         colTotal.setCellValueFactory(new PropertyValueFactory<Factura, Double>("total"));
         colCliente.setCellValueFactory(new PropertyValueFactory<Factura, String>("cliente"));
         colEmpleado.setCellValueFactory(new PropertyValueFactory<Factura, String>("empleado"));
@@ -102,7 +104,6 @@ public class MenuFacturaController implements Initializable {
         Factura fa = (Factura)tblFacturas.getSelectionModel().getSelectedItem();
         if(fa != null){
             tfFacturaId.setText(Integer.toString(fa.getFacturaId()));
-            tfFecha.setText(fa.getFecha());
             cmbCliente.getSelectionModel().select(obtenerIndexCliente());
             cmbEmpleado.getSelectionModel().select(obtenerIndexEmpleado());
         }
@@ -146,14 +147,14 @@ public class MenuFacturaController implements Initializable {
             
             while(resultset.next()){
                 int facturaId = resultset.getInt("facturaId");
-                String fecha = resultset.getString("fecha");
-                String hora = resultset.getString("hora");
+                Date fecha = resultset.getDate("fecha");
+                Time hora = resultset.getTime("hora");
                 Double total = resultset.getDouble("total");
                 String cliente = resultset.getString("cliente");
                 String empleado = resultset.getString("empleado");
 
                 
-                facturas.add(new Factura(facturaId, fecha, hora, total, cliente, empleado));
+                facturas.add(new Factura(facturaId, fecha.toLocalDate(), hora.toLocalTime(), total, cliente, empleado));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -261,8 +262,8 @@ public class MenuFacturaController implements Initializable {
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_agregarFacturas(?, ?, ?, ?, ?)";
             statement = conexion.prepareStatement(sql);
-            statement.setString(1, tfFecha.getText());
-            statement.setString(2, tfHora.getText());
+            statement.setDate(1, Date.valueOf(LocalDate.now()));
+            statement.setTime(2, Time.valueOf(LocalTime.now()));
             statement.setDouble(3, 0);
             statement.setInt(4, ((Cliente)cmbCliente.getSelectionModel().getSelectedItem()).getClienteId());
             statement.setInt(5, ((Empleado)cmbEmpleado.getSelectionModel().getSelectedItem()).getEmpleadoId());
@@ -290,8 +291,8 @@ public class MenuFacturaController implements Initializable {
             String sql = "call sp_editarFacturas(?, ?, ?, ?, ?, ?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfFacturaId.getText()));
-            statement.setString(2, tfFecha.getText());
-            statement.setString(3, tfHora.getText());
+            statement.setDate(2, Date.valueOf(tfFecha.getText()));
+            statement.setTime(3, Time.valueOf(tfHora.getText()));
             statement.setDouble(4, 0);
             statement.setInt(5, ((Cliente)cmbCliente.getSelectionModel().getSelectedItem()).getClienteId());
             statement.setInt(6, ((Empleado)cmbEmpleado.getSelectionModel().getSelectedItem()).getEmpleadoId());
@@ -321,6 +322,9 @@ public class MenuFacturaController implements Initializable {
         cmbCliente.setItems(listarClientes());
         cmbEmpleado.setItems(listarEmpleados());
         cargarDatos();
+        tfFecha.setText(LocalDate.now().toString());
+
+        tfHora.setText(LocalTime.now().toString());
     }  
     
     public Main getStage() {

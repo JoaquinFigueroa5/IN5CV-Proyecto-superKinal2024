@@ -5,14 +5,17 @@
  */
 package org.joaquinfigueroa.model;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  *
  * @author informatica
  */
 public class Factura {
     private int facturaId;
-    private String fecha;
-    private String hora;
+    private LocalDate fecha;
+    private LocalTime hora;
     private double total;
     private int clienteId;
     private String cliente;
@@ -22,7 +25,7 @@ public class Factura {
     public Factura() {
     }
 
-    public Factura(int facturaId, String fecha, String hora, double total, int clienteId, int empleadoId) {
+    public Factura(int facturaId, LocalDate fecha, LocalTime hora, double total, int clienteId, int empleadoId) {
         this.facturaId = facturaId;
         this.fecha = fecha;
         this.hora = hora;
@@ -31,7 +34,7 @@ public class Factura {
         this.empleadoId = empleadoId;
     }
 
-    public Factura(int facturaId,  String fecha, String hora, double total ,String cliente, String empleado) {
+    public Factura(int facturaId,  LocalDate fecha, LocalTime hora, double total ,String cliente, String empleado) {
         this.facturaId = facturaId;
         this.fecha = fecha;
         this.hora = hora;
@@ -50,19 +53,19 @@ public class Factura {
         this.facturaId = facturaId;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public String getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(String hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 

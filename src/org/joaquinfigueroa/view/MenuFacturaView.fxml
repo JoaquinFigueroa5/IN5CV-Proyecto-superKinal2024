@@ -21,7 +21,7 @@
       <ComboBox fx:id="cmbCliente" layoutX="55.0" layoutY="294.0" prefWidth="150.0" />
       <ComboBox fx:id="cmbEmpleado" layoutX="55.0" layoutY="420.0" prefWidth="150.0" />
       <TextField fx:id="tfTotal" editable="false" layoutX="55.0" layoutY="502.0" promptText="TOTAL" />
-      <TableView fx:id="tblFacturas" layoutX="250.0" layoutY="210.0" prefHeight="292.0" prefWidth="648.0">
+      <TableView fx:id="tblFacturas" layoutX="250.0" layoutY="210.0" onMouseClicked="#cargarDatosEditar" prefHeight="292.0" prefWidth="648.0">
         <columns>
           <TableColumn fx:id="colFacturaId" prefWidth="75.0" text="facturaId" />
           <TableColumn fx:id="colFecha" prefWidth="99.0" text="fecha" />

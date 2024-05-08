@@ -206,7 +206,7 @@ public class MenuTicketSoporteController implements Initializable {
             statement = conexion.prepareStatement(sql);
             statement.setString(1, taDescripcion.getText());
             statement.setInt(2, ((Cliente)cmbClientes.getSelectionModel().getSelectedItem()).getClienteId());
-            statement.setInt(3, 3);
+            statement.setInt(3, 0);
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
