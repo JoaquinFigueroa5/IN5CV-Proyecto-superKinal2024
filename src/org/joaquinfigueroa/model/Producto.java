@@ -19,7 +19,7 @@ public class Producto {
     private double precioVentaUnitario;
     private double precioVenteMayor;
     private double precioCompra;
-    private Image imagenProducto;
+    private Blob imagenProducto;
     private int distribuidorId;
     private String distribuidor;
     private int categoriaProdcutoId;
@@ -29,7 +29,7 @@ public class Producto {
         
     }
 
-    public Producto(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, double precioVentaUnitario, double precioVenteMayor, double precioCompra, Image imagenProducto, int distribuidorId, int categoriaProdcutoId) {
+    public Producto(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, double precioVentaUnitario, double precioVenteMayor, double precioCompra, Blob imagenProducto, int distribuidorId, int categoriaProdcutoId) {
         this.productoId = productoId;
         this.nombreProducto = nombreProducto;
         this.descripcionProducto = descripcionProducto;
@@ -42,7 +42,7 @@ public class Producto {
         this.categoriaProdcutoId = categoriaProdcutoId;
     }
 
-    public Producto(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, double precioVentaUnitario, double precioVenteMayor, double precioCompra, Image imagenProducto, String distribuidor, String categoriaProdcutoS) {
+    public Producto(int productoId, String nombreProducto, String descripcionProducto, int cantidadStock, double precioVentaUnitario, double precioVenteMayor, double precioCompra, Blob imagenProducto, String distribuidor, String categoriaProdcutoS) {
         this.productoId = productoId;
         this.nombreProducto = nombreProducto;
         this.descripcionProducto = descripcionProducto;
@@ -127,11 +127,11 @@ public class Producto {
         this.precioCompra = precioCompra;
     }
 
-    public Image getImagenProducto() {
+    public Blob getImagenProducto() {
         return imagenProducto;
     }
 
-    public void setImagenProducto(Image imagenProducto) {
+    public void setImagenProducto(Blob imagenProducto) {
         this.imagenProducto = imagenProducto;
     }
 

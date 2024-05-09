@@ -6,12 +6,17 @@
 package org.joaquinfigueroa.controller;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +28,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -30,8 +36,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
 import org.joaquinfigueroa.dao.Conexion;
+import org.joaquinfigueroa.dto.ProductoDTO;
 import org.joaquinfigueroa.model.CategoriaProducto;
 import org.joaquinfigueroa.model.Distribuidor;
 import org.joaquinfigueroa.model.Producto;
@@ -49,6 +58,7 @@ public class MenuProductosController implements Initializable {
     private static Connection conexion = null;
     private static PreparedStatement statement = null;
     private static ResultSet resultset = null;
+    private List<File> files = null;
     
     @FXML
     TableView tblProductos;
@@ -63,61 +73,103 @@ public class MenuProductosController implements Initializable {
     ComboBox cmbDistribuidor, cmbCategoria;
     
     @FXML
-    Button btnGuardar, btnEliminar, btnVaciar, btnRegresar;
+    Button btnAgregar, btnEliminar, btnRegresar, btnEditar, btnBuscar;
+    
+    
+    @FXML
+    ImageView imgCargar, imgMostrar;
+    
+    @FXML
+    Label lblNombre;
     
     @FXML
     TableColumn colProductoId, colNombre, colDescripcion, colStock, colPUnitario, colPMayor, colPCompra, colDistribuidor, colCategoria;
     
-    @FXML
-    ImageView imgProductos;
-    
     
     @FXML
     public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnRegresar){
+        try{
+            if(event.getSource() == btnRegresar){
             stage.menuPrincipalView();
-        }else if(event.getSource() == btnGuardar){
-            if(tfProductoId.getText().equals("")){
-                //agregarTicket();
+            }else if(event.getSource() == btnAgregar){
+                stage.formProductoView(1);
+            }else if(event.getSource() == btnEditar){
+                ProductoDTO.getProductoDTO().setProducto((Producto)tblProductos.getSelectionModel().getSelectedItem());
+                stage.formProductoView(2);
+            }else if(event.getSource() == btnEliminar){
+                int proId = ((Producto)tblProductos.getSelectionModel().getSelectedItem()).getProductoId();
+                eliminarProducto(proId);
                 cargarDatos();
-            }else{
-                //editarTicket();
+            }else if(event.getSource() == btnBuscar){
+                Producto producto = buscarProducto();
+                tblProductos.getItems().clear();
+                if(tfProductoId.getText().equals("")){
+                    cargarDatos();
+                }else{
+                    lblNombre.setText(producto.getNombreProducto());
+                    InputStream file = producto.getImagenProducto().getBinaryStream();
+                    Image image = new Image(file);
+                    imgMostrar.setImage(image);
+                    tblProductos.getItems().add(buscarProducto());
+                    colProductoId.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("productoId"));
+                    colNombre.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreProducto"));
+                    colDescripcion.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcionProducto"));
+                    colStock.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("cantidadStock"));
+                    colPUnitario.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaUnitario"));
+                    colPMayor.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaMayor"));
+                    colPCompra.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioCompra"));
+                    colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("distribuidor"));
+                    colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("categoriaProductos"));
+                }
             }
-        }else if(event.getSource() == btnVaciar){
-            vaciarCampos();
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+    }
+    
+    @FXML
+    public void handleOnDrag(DragEvent event){
+        if(event.getDragboard().hasFiles()){
+            event.acceptTransferModes(TransferMode.ANY);
         }
     }
     
-    public void vaciarCampos(){
-        tfProductoId.clear();
-        tfNombre.clear();
-        tfStock.clear();
-        tfPunitario.clear();
-        tfPMayor.clear();
-        tfPCompra.clear();
-        taDescripcion.clear();
-        cmbDistribuidor.getSelectionModel().clearSelection();
-        cmbCategoria.getSelectionModel().clearSelection();
+    @FXML
+    public void handleOnDrop(DragEvent event){
+        try{
+            files = event.getDragboard().getFiles();
+            FileInputStream file = new FileInputStream(files.get(0));
+            Image image = new Image(file);
+            imgCargar.setImage(image);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         
     }
-
     
     public void cargarDatos(){
-        tblProductos.setItems(listarProductos());
-        colProductoId.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("productoId"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreProducto"));
-        colDescripcion.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcionProducto"));
-        colStock.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("cantidadStock"));
-        colPUnitario.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaUnitario"));
-        colPMayor.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaMayor"));
-        colPCompra.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioCompra"));
-        colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("distribuidor"));
-        colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("categoriaProductos"));
-        tblProductos.getSortOrder().add(colProductoId);
-
+        try{
+            tblProductos.setItems(listarProductos());
+            colProductoId.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("productoId"));
+            colNombre.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreProducto"));
+            colDescripcion.setCellValueFactory(new PropertyValueFactory<Producto, String>("descripcionProducto"));
+            colStock.setCellValueFactory(new PropertyValueFactory<Producto, Integer>("cantidadStock"));
+            colPUnitario.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaUnitario"));
+            colPMayor.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaMayor"));
+            colPCompra.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioCompra"));
+            FileInputStream file = new FileInputStream(files.get(0));
+            Image image = new Image(file);
+            imgCargar.setImage(image);
+            colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreDistribuidor"));
+            colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreCategoria"));
+            tblProductos.getSortOrder().add(colProductoId);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    
     }
-    
-    
     
     public ObservableList<Producto> listarProductos(){
         ArrayList<Producto> productos = new ArrayList<>();
@@ -135,9 +187,8 @@ public class MenuProductosController implements Initializable {
                 double precioVentaUnitario = resultset.getDouble("precioVentaUnitario");
                 double precioVentaMayor = resultset.getDouble("precioVentaMayor");
                 double precioCompra = resultset.getDouble("precioCompra");
-                byte[] bytesImagen = resultset.getBytes("imagenProducto");
-                String distribuidor = resultset.getString("distribuidor");
-                String categoriaProductoS = resultset.getString("categoria");
+                String distribuidor = resultset.getString("nombreDistribuidor");
+                String categoriaProductoS = resultset.getString("nombreCategoria");
                 
                 productos.add(new Producto(productoId, nombre, descripcion, stock, precioVentaUnitario, precioVentaMayor, precioCompra, distribuidor, categoriaProductoS));
             }
@@ -198,142 +249,59 @@ public class MenuProductosController implements Initializable {
         return index;
     }    
     
-    public ObservableList<CategoriaProducto> listarCategoriaProductos(){
-        ArrayList<CategoriaProducto> categoriaProductos = new ArrayList<>();
-        try{
-            conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_listarCategoriaProductos()";
-            statement = conexion.prepareStatement(sql);
-            resultset = statement.executeQuery();
-            
-            while(resultset.next()){
-                int categoriaProductosId = resultset.getInt("categoriaProductosId");
-                String nombreCategoria = resultset.getString("nombreCategoria");
-                String descripcionCategoria = resultset.getString("descripcionCategoria");
-                categoriaProductos.add(new CategoriaProducto(categoriaProductosId, nombreCategoria, descripcionCategoria));
-            }
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }finally{
-            try{
-                if(resultset != null){
-                    resultset.close();
-                }
-                if(statement != null){
-                    statement.close();
-                }
-                if(conexion != null){
-                    conexion.close();
-                }
-            }catch(SQLException e){
-                System.out.println(e.getMessage());
-                
-            }
-        }
-        return FXCollections.observableList(categoriaProductos);
-    }
-    public ObservableList<Distribuidor> listarDistribuidores(){
-        ArrayList<Distribuidor> distribuidores = new ArrayList<>();
-        try{
-            conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_listarDistribuidores()";
-            statement = conexion.prepareStatement(sql);
-            resultset = statement.executeQuery();
-            
-            while(resultset.next()){
-                int distribuidorId = resultset.getInt("distribuidorId");
-                String nombre = resultset.getString("nombreDistribuidor");
-                String direccion = resultset.getString("direccionDistribuidor");
-                String nit = resultset.getString("nitDistribuidor");
-                String telefono = resultset.getString("telefonoDistribuidor");
-                String web = resultset.getString("web");
-                
-                distribuidores.add(new Distribuidor(distribuidorId, nombre, direccion, nit, telefono, web));
-            }
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }finally{
-            try{
-                if(resultset != null){
-                    resultset.close();
-                }
-                if(statement != null){
-                    statement.close();
-                }
-                if(conexion != null){
-                    conexion.close();
-                }
-            }catch(SQLException e){
-                System.out.println(e.getMessage());
-                
-            }
-        }
-        return FXCollections.observableList(distribuidores);
-    }
+
     
-    public void agregarProductos(){
+    public Producto buscarProducto(){
+        Producto producto = null;
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_agregarProducto(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            statement = conexion.prepareStatement(sql);
-            statement.setString(1, tfNombre.getText());
-            statement.setString(2, taDescripcion.getText());
-            statement.setInt(3, Integer.parseInt(tfStock.getText()));
-            statement.setDouble(4, Double.parseDouble(tfPunitario.getText()));
-            statement.setDouble(5, Double.parseDouble(tfPMayor.getText()));
-            statement.setDouble(6, Double.parseDouble(tfPCompra.getText()));
-            // statement.setBlob(7, imgProductos.getImage());
-            statement.setInt(8, ((Distribuidor)cmbDistribuidor.getSelectionModel().getSelectedItem()).getDistribuidorId());
-            statement.setInt(9, ((CategoriaProducto)cmbCategoria.getSelectionModel().getSelectedItem()).getCategoriaProductosId());
-            statement.execute();
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }finally{
-            try{
-                if(statement != null){
-                    statement.close();
-                }
-                if(conexion != null){
-                    conexion.close();
-                }
-                               
-            }catch(SQLException e){
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-    
-    public void editarProductos(){
-        try{
-            conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_editarProducto(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "call sp_buscarProducto(?)";
             statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfProductoId.getText()));
-            statement.setString(2, tfNombre.getText());
-            statement.setString(3, taDescripcion.getText());
-            statement.setInt(4, Integer.parseInt(tfStock.getText()));
-            statement.setDouble(5, Double.parseDouble(tfPunitario.getText()));
-            statement.setDouble(6, Double.parseDouble(tfPMayor.getText()));
-            statement.setDouble(7, Double.parseDouble(tfPCompra.getText()));
-            //statement.setBlob(8, Blob.parseBlob(imgProductos.getImage()));
-            statement.setInt(9, ((Distribuidor)cmbDistribuidor.getSelectionModel().getSelectedItem()).getDistribuidorId());
-            statement.setInt(10, ((CategoriaProducto)cmbCategoria.getSelectionModel().getSelectedItem()).getCategoriaProductosId());
+            resultset = statement.executeQuery();
+            if(resultset.next()){
+                int productoId = resultset.getInt("productoId");
+                String nombre = resultset.getString("nombreProducto");
+                String descripcion = resultset.getString("descripcionProducto");
+                int stock = resultset.getInt("cantidadStock");
+                Double PVUnitario = resultset.getDouble("precioVentaUnitario");
+                Double PVMayor = resultset.getDouble("precioVentaMayor");
+                Double PCompra = resultset.getDouble("precioCompra");
+                Blob imagen = resultset.getBlob("imagenProducto");
+                String distribuidor = resultset.getString("nombreDistribuidor");
+                String categoria = resultset.getString("nombreCategoria");
+                
+                producto = new Producto(productoId, nombre, descripcion, stock, PVUnitario, PVMayor, PCompra, imagen, distribuidor, categoria);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return producto;
+    } 
+    
+    public void eliminarProducto(int proId){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_eliminarProducto(?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, proId);
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }finally{
             try{
-                if(conexion != null){
-                conexion.close();
-                }
                 if(statement != null){
                     statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
                 }
             }catch(SQLException e){
                 System.out.println(e.getMessage());
             }
         }
     }
+
     
    
     /**
@@ -341,8 +309,6 @@ public class MenuProductosController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cmbCategoria.setItems(listarCategoriaProductos());
-        cmbDistribuidor.setItems(listarDistribuidores());
         cargarDatos();
     }
     

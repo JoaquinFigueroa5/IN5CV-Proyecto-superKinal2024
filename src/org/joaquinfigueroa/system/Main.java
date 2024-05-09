@@ -204,6 +204,16 @@ public class Main extends Application {
         }
     }
     
+    public void formProductoView(int op){
+        try{
+            FormProductosController formProductosView = (FormProductosController)switchScene("FormProductosView.fxml", 477, 668);
+            formProductosView.setOp(op);
+            formProductosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public void menuDetalleFacturasView(){
         try{
             MenuDetalleFacturaController menuDetalleFacturasView = (MenuDetalleFacturaController)switchScene("MenuDetalleFacturaView", 980, 593);
