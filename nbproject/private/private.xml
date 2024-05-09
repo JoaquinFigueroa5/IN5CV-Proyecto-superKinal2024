@@ -4,24 +4,30 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuPromocionesController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/Cargo.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuFacturaController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuCargosController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/view/MenuDetalleFacturaView.fxml</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/Producto.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/dto/DistribuidorDTO.java</file>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/FormEmpleadosController.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/dto/CategoriaProductoDTO.java</file>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuTicketSoporteController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/TicketSoporte.java</file>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/Factura.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuEmpleadosController.java</file>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/system/Main.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/Empleado.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuClientesController.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/FormProductosController.java</file>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuDetalleFacturaController.java</file>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuProductosController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/DetalleFactura.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuCategoriaProductosController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/dao/Conexion.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuPrincipalController.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/FormDistribuidoresController.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/dto/EmpleadoDTO.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/view/FormProductosView.fxml</file>
             <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuDistribuidoresController.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuAgregarClientesController.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/dto/ProductoDTO.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuFacturaController.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuEmpleadosController.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/Distribuidor.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuEditarCargosController.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/view/MenuProductosView.fxml</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/CategoriaProducto.java</file>
+            <file>file:/C:/Users/Joaki/Desktop/Repositorio%20-%20Respaldo/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuPrincipalController.java</file>
         </group>
     </open-files>
 </project-private>
