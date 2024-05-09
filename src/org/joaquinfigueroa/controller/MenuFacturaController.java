@@ -80,9 +80,7 @@ public class MenuFacturaController implements Initializable {
     
     
     public void vaciarCampos(){
-        tfFecha.clear();
         tfFacturaId.clear();
-        tfHora.clear();
         tfTotal.clear();
         cmbCliente.getSelectionModel().clearSelection();
         cmbEmpleado.getSelectionModel().clearSelection();

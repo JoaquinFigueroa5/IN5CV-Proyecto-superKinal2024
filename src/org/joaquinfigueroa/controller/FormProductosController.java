@@ -304,7 +304,7 @@ public class FormProductosController implements Initializable {
     @FXML
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnRegresar){
-            stage.menuEmpleadosView();
+            stage.menuProductoView();
         }else if(event.getSource() == btnCargar){
             if(op == 1){
                 agregarProductos();

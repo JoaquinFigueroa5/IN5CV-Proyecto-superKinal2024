@@ -37,7 +37,6 @@ public class MenuEditarCargosController implements Initializable {
     
     private static Connection conexion = null;
     private static PreparedStatement statement = null;
-    private static ResultSet resultset = null;
     
     @FXML
     TextField tfNombreCargo, tfCargoId;
@@ -80,6 +79,7 @@ public class MenuEditarCargosController implements Initializable {
                 }
             }catch(SQLException e){
                 System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         }
     }

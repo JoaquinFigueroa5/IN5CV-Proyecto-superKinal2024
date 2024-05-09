@@ -25,7 +25,7 @@
       <TextField fx:id="tfPCompra" layoutX="76.0" layoutY="484.0" />
       <Button fx:id="btnCargar" layoutX="310.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="53.0" prefWidth="87.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Cargar" />
       <Button fx:id="btnRegresar" layoutX="310.0" layoutY="540.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="53.0" prefWidth="87.0" style="-fx-background-color: #237092; -fx-background-radius: 10;" text="Regresar" />
-      <ImageView fx:id="imgCarga" fitHeight="165.0" fitWidth="200.0" layoutX="263.0" layoutY="229.0" onDragDropped="#handleOnDrop" onDragOver="#handleOnDrag" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgCarga" fitHeight="151.0" fitWidth="170.0" layoutX="282.0" layoutY="237.0" onDragDropped="#handleOnDrop" onDragOver="#handleOnDrag" pickOnBounds="true" preserveRatio="true" />
       <ComboBox fx:id="cmbDistribuidor" layoutX="76.0" layoutY="548.0" prefWidth="150.0" />
       <ComboBox fx:id="cmbCategoria" layoutX="75.0" layoutY="617.0" prefWidth="150.0" />
    </children>

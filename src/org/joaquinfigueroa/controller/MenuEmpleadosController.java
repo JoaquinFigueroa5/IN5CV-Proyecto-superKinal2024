@@ -69,13 +69,13 @@ public class MenuEmpleadosController implements Initializable {
             
             while(resultset.next()){
                 int empleadoId = resultset.getInt("empleadoId");
-                String nombreEmpleado = resultset.getString("Empleado");
+                String nombreEmpleado = resultset.getString("nombreEmpleado");
                 String apellidoEmpleado = resultset.getString("apellidoEmpleado");
                 double sueldo = resultset.getDouble("sueldo");
                 String horaEntrada = resultset.getString("horaEntrada");
                 String horaSalida = resultset.getString("horaSalida");
-                String cargo = resultset.getString("cargo");
-                String encargado = resultset.getString("encargado");
+                String cargo = resultset.getString("nombreCargo");
+                String encargado = resultset.getString("Encargado");
 
                 empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargo, encargado));
             }
@@ -110,8 +110,8 @@ public class MenuEmpleadosController implements Initializable {
         colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, Double>("sueldo"));
         colEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaEntrada"));
         colSalida.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaSalida"));
-        colCargo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("cargo"));
-        colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("encargado"));
+        colCargo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreCargo"));
+        colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("Encargado"));
 
     }
     
@@ -154,8 +154,8 @@ public class MenuEmpleadosController implements Initializable {
                 double sueldo = resultset.getDouble("sueldo");
                 String horaEntrada = resultset.getString("horaEntrada");
                 String horaSalida = resultset.getString("horaSalida");
-                String cargo = resultset.getString("cargo");
-                String encargado = resultset.getString("encargado");
+                String cargo = resultset.getString("nombreCargo");
+                String encargado = resultset.getString("Encargado");
                 
                 empleado = (new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargo, encargado));
             }
@@ -214,8 +214,8 @@ public class MenuEmpleadosController implements Initializable {
                 colSueldo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("sueldo"));
                 colEntrada.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaEntrada"));
                 colSalida.setCellValueFactory(new PropertyValueFactory<Empleado, String>("horaSalida"));
-                colCargo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("cargo"));
-                colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("encargadoId"));
+                colCargo.setCellValueFactory(new PropertyValueFactory<Empleado, String>("nombreCargo"));
+                colEncargado.setCellValueFactory(new PropertyValueFactory<Empleado, String>("Encargado"));
             }
         }
     }

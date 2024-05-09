@@ -159,9 +159,6 @@ public class MenuProductosController implements Initializable {
             colPUnitario.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaUnitario"));
             colPMayor.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaMayor"));
             colPCompra.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioCompra"));
-            FileInputStream file = new FileInputStream(files.get(0));
-            Image image = new Image(file);
-            imgCargar.setImage(image);
             colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreDistribuidor"));
             colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreCategoria"));
             tblProductos.getSortOrder().add(colProductoId);

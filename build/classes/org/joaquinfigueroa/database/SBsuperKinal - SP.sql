@@ -121,31 +121,32 @@ create procedure sp_agregarEmpleados(in nomEmp varchar(30),in apeEmp varchar(30)
     end $$
 delimiter ;
 
-call sp_agregarEmpleados('Sebastian', 'Lopez', 2043.26, '05:00:00', '21:00:00', 1, 1);
+call sp_agregarEmpleados('Sebastian', 'Lopez', 2043.26, '05:00:00', '21:00:00', 1, 2);
 
 -- listar
 delimiter $$
 create procedure sp_listarEmpleados()
 	begin
-		select E1.empleadoId, E1.nombreEmpleado as 'Empleado', E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
-        C.nombreCargo as 'cargo',
-        E2.nombreEmpleado as 'encargado' from Empleados E1
+		select E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
+        C.nombreCargo,
+        E2.nombreEmpleado as 'Encargado'from Empleados E1
         join Cargos C on C.cargoId = E1.cargoId
         left join Empleados E2 on E1.encargadoId = E2.empleadoId;
     end $$
 delimiter ;
 
-
 delimiter $$
-create procedure sp_listarCargosEncargados()
+create procedure sp_listarEncargados()
 	begin
-		select concat('Id: ', E.empleadoId, ' - ', E.nombreEmpleado) as 'Empleado',
-			concat('Id: ', C.cargoId, ' - ', C.nombreCargo) 'Cargo' from Empleados E
-        join Cargos C on C.cargoId = E.cargoId
-        where E.encargadoId is null;
+		select E1.empleadoId, E1.nombreEmpleado,
+			E2.nombreEmpleado as 'Encargado 'from Empleados E1
+			left join Empleados E2 on E1.encargadoId = E2.empleadoId where E1.encargadoId is null;
     end$$
 delimiter ;
 
+-- select * from Empleados;
+
+-- call sp_listarEmpleados();
 
 -- buscar
 delimiter $$
@@ -499,13 +500,15 @@ DELIMITER ;
 -- Eliminar
  
 DELIMITER $$
-create procedure sp_eliminarCategoriaProductos(catProId int)
+create procedure sp_eliminarCategoriaProductos(in catProId int)
 	begin 
 		delete from CategoriaProductos
-        where catProId = categoriaProductosId;
+        where categoriaProductosId = catProId;
     end $$
 DELIMITER ;
 
+
+select * from CategoriaProductos;
 -- Editar
  
 DELIMITER $$

@@ -19,7 +19,7 @@ public class Empleado {
     //private LocalTime horaSalida;
     private String horaSalida;
     private int cargoId;
-    private String cargo;
+    private String nombreCargo;
     private int encargadoId;
     private String encargado;
 
@@ -37,16 +37,24 @@ public class Empleado {
         this.encargadoId = encargadoId;
     }
 
-    public Empleado(int empleadoId, String nombreEmpleado, String apellidoEmpleado, double sueldo, String horaEntrada, String horaSalida, String cargo, String encargado) {
+    public Empleado(int empleadoId, String nombreEmpleado, String apellidoEmpleado, double sueldo, String horaEntrada, String horaSalida, String nombreCargo, String encargado) {
         this.empleadoId = empleadoId;
         this.nombreEmpleado = nombreEmpleado;
         this.apellidoEmpleado = apellidoEmpleado;
         this.sueldo = sueldo;
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
-        this.cargo = cargo;
+        this.nombreCargo = nombreCargo;
         this.encargado = encargado;
     }
+
+    public Empleado(int empleadoId, String nombreEmpleado, String encargado) {
+        this.empleadoId = empleadoId;
+        this.nombreEmpleado = nombreEmpleado;
+        this.encargado = encargado;
+    }
+    
+    
     
     
 
@@ -114,12 +122,12 @@ public class Empleado {
         this.encargadoId = encargadoId;
     }
 
-    public String getCargo() {
-        return cargo;
+    public String getNombreCargo() {
+        return nombreCargo;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setNombreCargo(String nombreCargo) {
+        this.nombreCargo = nombreCargo;
     }
 
     public String getEncargado() {
