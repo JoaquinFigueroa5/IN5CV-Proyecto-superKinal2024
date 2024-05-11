@@ -69,15 +69,15 @@ public class MenuEmpleadosController implements Initializable {
             
             while(resultset.next()){
                 int empleadoId = resultset.getInt("empleadoId");
-                String nombreEmpleado = resultset.getString("nombreEmpleado");
-                String apellidoEmpleado = resultset.getString("apellidoEmpleado");
+                String nombre = resultset.getString("nombreEmpleado");
+                String apellido = resultset.getString("apellidoEmpleado");
                 double sueldo = resultset.getDouble("sueldo");
                 String horaEntrada = resultset.getString("horaEntrada");
                 String horaSalida = resultset.getString("horaSalida");
                 String cargo = resultset.getString("nombreCargo");
                 String encargado = resultset.getString("Encargado");
 
-                empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargo, encargado));
+                empleados.add(new Empleado(empleadoId, nombre, apellido, sueldo, horaEntrada, horaSalida, cargo, encargado));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

@@ -140,7 +140,7 @@ public class FormProductosController implements Initializable {
         return index;
     }
     
-        public void agregarProductos(){
+    public void agregarProductos(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_agregarProducto(?, ?, ?, ?, ?, ?, ?, ?, ?)";

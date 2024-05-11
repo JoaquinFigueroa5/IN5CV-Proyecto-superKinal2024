@@ -116,7 +116,7 @@ public class FormEmpleadosController implements Initializable {
             while(resultset.next()){
                 int empleadoId = resultset.getInt("empleadoId");
                 String nombreEmpleado = resultset.getString("nombreEmpleado");
-                String encargado = resultset.getString("encargado");
+                String encargado = resultset.getString("nombreEmpleado");
                 
                 encargados.add(new Empleado(empleadoId, nombreEmpleado, encargado));
             }

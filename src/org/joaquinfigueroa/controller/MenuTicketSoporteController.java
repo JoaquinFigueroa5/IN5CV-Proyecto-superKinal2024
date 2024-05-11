@@ -7,9 +7,11 @@ package org.joaquinfigueroa.controller;
 
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -26,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.joaquinfigueroa.dao.Conexion;
 import org.joaquinfigueroa.model.Cliente;
+import org.joaquinfigueroa.model.Factura;
 import org.joaquinfigueroa.model.TicketSoporte;
 import org.joaquinfigueroa.system.Main;
 
@@ -42,7 +45,7 @@ public class MenuTicketSoporteController implements Initializable {
     private static ResultSet resultset = null;
     
     @FXML
-    ComboBox cmbEstatus, cmbClientes;
+    ComboBox cmbEstatus, cmbClientes, cmbFacturas;
     
     @FXML 
     Button btnRegresar, btnGuardar, btnVaciar;
@@ -160,6 +163,46 @@ public class MenuTicketSoporteController implements Initializable {
         return FXCollections.observableList(tickets);
     }
     
+    public ObservableList<Factura> listarFacturas(){
+        ArrayList<Factura> facturas = new ArrayList<>();
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_listarFacturas()";
+            statement = conexion.prepareStatement(sql);
+            resultset = statement.executeQuery();
+            
+            while(resultset.next()){
+                int facturaId = resultset.getInt("facturaId");
+                Date fecha = resultset.getDate("fecha");
+                Time hora = resultset.getTime("hora");
+                Double total = resultset.getDouble("total");
+                String cliente = resultset.getString("cliente");
+                String empleado = resultset.getString("empleado");
+
+                
+                facturas.add(new Factura(facturaId, fecha.toLocalDate(), hora.toLocalTime(), total, cliente, empleado));
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(resultset != null){
+                    resultset.close();
+                }
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+                
+            }
+        }
+        
+        return FXCollections.observableList(facturas);
+    }
+    
     public ObservableList<Cliente> listarClientes(){
         ArrayList<Cliente> clientes = new ArrayList<>();
         try{
@@ -206,7 +249,7 @@ public class MenuTicketSoporteController implements Initializable {
             statement = conexion.prepareStatement(sql);
             statement.setString(1, taDescripcion.getText());
             statement.setInt(2, ((Cliente)cmbClientes.getSelectionModel().getSelectedItem()).getClienteId());
-            statement.setInt(3, 0);
+            statement.setInt(3, ((Factura)cmbFacturas.getSelectionModel().getSelectedItem()).getFacturaId());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -234,7 +277,7 @@ public class MenuTicketSoporteController implements Initializable {
             statement.setString(2, taDescripcion.getText());
             statement.setString(3, cmbEstatus.getSelectionModel().getSelectedItem().toString());
             statement.setInt(4, ((Cliente)cmbClientes.getSelectionModel().getSelectedItem()).getClienteId());
-            statement.setInt(5, 9);
+            statement.setInt(5, ((Factura)cmbFacturas.getSelectionModel().getSelectedItem()).getFacturaId());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -259,6 +302,7 @@ public class MenuTicketSoporteController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         cargarCMBEstatus();
         cmbClientes.setItems(listarClientes());
+        cmbFacturas.setItems(listarFacturas());
         cargarDatos();
     }    
 

@@ -121,7 +121,7 @@ create procedure sp_agregarEmpleados(in nomEmp varchar(30),in apeEmp varchar(30)
     end $$
 delimiter ;
 
-call sp_agregarEmpleados('Sebastian', 'Lopez', 2043.26, '05:00:00', '21:00:00', 1, 2);
+call sp_agregarEmpleados('Alexi', 'Kun', 8745.09, '09:00:00', '16:00:00', 2, 2);
 
 -- listar
 delimiter $$
@@ -139,7 +139,7 @@ delimiter $$
 create procedure sp_listarEncargados()
 	begin
 		select E1.empleadoId, E1.nombreEmpleado,
-			E2.nombreEmpleado as 'Encargado 'from Empleados E1
+			E2.nombreEmpleado from Empleados E1
 			left join Empleados E2 on E1.encargadoId = E2.empleadoId where E1.encargadoId is null;
     end$$
 delimiter ;
@@ -152,10 +152,16 @@ delimiter ;
 delimiter $$
 create procedure sp_buscarEmpleados(in empId int)
 	begin
-		select * from Empleados
+		select E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
+        C.nombreCargo,
+        E2.nombreEmpleado as 'Encargado'from Empleados E1
+        join Cargos C on C.cargoId = E1.cargoId
+        left join Empleados E2 on E1.encargadoId = E2.empleadoId
 			where empleadoId = empId;
     end $$
 delimiter ;
+
+call sp_buscarEmpleados(1);
 
 
 -- eliminar

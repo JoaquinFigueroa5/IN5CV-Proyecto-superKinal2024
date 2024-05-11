@@ -121,7 +121,7 @@ create procedure sp_agregarEmpleados(in nomEmp varchar(30),in apeEmp varchar(30)
     end $$
 delimiter ;
 
-call sp_agregarEmpleados('Sebastian', 'Lopez', 2043.26, '05:00:00', '21:00:00', 1, 2);
+call sp_agregarEmpleados('Alexi', 'Kun', 8745.09, '09:00:00', '16:00:00', 2, 2);
 
 -- listar
 delimiter $$
@@ -139,7 +139,7 @@ delimiter $$
 create procedure sp_listarEncargados()
 	begin
 		select E1.empleadoId, E1.nombreEmpleado,
-			E2.nombreEmpleado as 'Encargado 'from Empleados E1
+			E2.nombreEmpleado from Empleados E1
 			left join Empleados E2 on E1.encargadoId = E2.empleadoId where E1.encargadoId is null;
     end$$
 delimiter ;
@@ -149,13 +149,23 @@ delimiter ;
 -- call sp_listarEmpleados();
 
 -- buscar
-delimiter $$
-create procedure sp_buscarEmpleados(in empId int)
-	begin
-		select * from Empleados
-			where empleadoId = empId;
-    end $$
-delimiter ;
+DELIMITER $$
+
+CREATE PROCEDURE sp_buscarEmpleados(IN empId INT)
+BEGIN
+    SELECT E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
+           C.nombreCargo,
+           E2.nombreEmpleado AS Encargado
+    FROM Empleados E1
+    JOIN Cargos C ON C.cargoId = E1.cargoId
+    LEFT JOIN Empleados E2 ON E1.encargadoId = E2.empleadoId
+    WHERE E1.empleadoId = empId;
+END $$
+
+DELIMITER ;
+
+
+call sp_buscarEmpleados(1);
 
 
 -- eliminar
@@ -259,9 +269,14 @@ delimiter ;
 delimiter $$
 create procedure sp_listarPromociones()
 	begin
-		select * from Promociones;
+		select PS.promocionId, PS.precioPromocion, PS.descripcionPromocion, PS.fechaInicio, PS.fechaFinalizacion,  
+			P.nombreProducto from Promociones PS
+            join Productos P on PS.productoId = P.productoId;
     end $$
 delimiter ;
+
+
+select * from Promociones;
 
 
 -- buscar
@@ -283,6 +298,8 @@ create procedure sp_eliminarPromociones(in promoId int)
 				where promocionId = promoId;
     end $$
 delimiter ;
+
+-- call sp_eliminarPromociones(1);
 
 -- editar
 delimiter $$
@@ -586,18 +603,29 @@ delimiter ;
 delimiter $$
 create procedure sp_listarProducto()
 	begin 
-		select * from Productos;
+		select P.productoId, P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor, P.precioCompra, P.imagenProducto,
+			D.nombreDistribuidor, 
+            CP.nombreCategoria from Productos P
+            join Distribuidores D on P.distribuidorId =  D.distribuidorId
+            join CategoriaProductos CP on P.categoriaProductosId = CP.categoriaProductosId;
     end $$
 delimiter ;
+
 
 -- buscar
 delimiter $$
 create procedure sp_buscarProducto(in proId int)
 	begin 
-		select * from Productos
-        where productoId = proId;
+		select P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor, P.precioCompra, P.imagenProducto,
+			D.nombreDistribuidor, 
+            CP.nombreCategoria from Productos P
+            join Distribuidores D on P.distribuidorId =  D.distribuidorId
+            join CategoriaProductos CP on P.categoriaProductosId = CP.categoriaProductosId
+				where P.productoId = proId;
     end $$
 delimiter ;
+
+call sp_buscarProducto(2);
 
 -- eliminar 
 delimiter $$

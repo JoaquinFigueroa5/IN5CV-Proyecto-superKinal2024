@@ -5,7 +5,6 @@
  */
 package org.joaquinfigueroa.controller;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -22,10 +21,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -38,11 +34,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
-import javafx.stage.Stage;
 import org.joaquinfigueroa.dao.Conexion;
 import org.joaquinfigueroa.dto.ProductoDTO;
-import org.joaquinfigueroa.model.CategoriaProducto;
-import org.joaquinfigueroa.model.Distribuidor;
 import org.joaquinfigueroa.model.Producto;
 import org.joaquinfigueroa.system.Main;
 
@@ -102,10 +95,9 @@ public class MenuProductosController implements Initializable {
                 cargarDatos();
             }else if(event.getSource() == btnBuscar){
                 Producto producto = buscarProducto();
-                tblProductos.getItems().clear();
-                if(tfProductoId.getText().equals("")){
+                if(producto != null){
+                    tblProductos.getItems().clear();
                     cargarDatos();
-                }else{
                     lblNombre.setText(producto.getNombreProducto());
                     InputStream file = producto.getImagenProducto().getBinaryStream();
                     Image image = new Image(file);
@@ -120,6 +112,7 @@ public class MenuProductosController implements Initializable {
                     colPCompra.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioCompra"));
                     colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("distribuidor"));
                     colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("categoriaProductos"));
+                    
                 }
             }
             
@@ -159,6 +152,7 @@ public class MenuProductosController implements Initializable {
             colPUnitario.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaUnitario"));
             colPMayor.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaMayor"));
             colPCompra.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioCompra"));
+            
             colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreDistribuidor"));
             colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreCategoria"));
             tblProductos.getSortOrder().add(colProductoId);
@@ -254,7 +248,7 @@ public class MenuProductosController implements Initializable {
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_buscarProducto(?)";
             statement = conexion.prepareStatement(sql);
-            statement.setInt(1, Integer.parseInt(tfProductoId.getText()));
+            statement.setInt(1, Integer.parseInt(tfBuscar.getText()));
             resultset = statement.executeQuery();
             if(resultset.next()){
                 int productoId = resultset.getInt("productoId");

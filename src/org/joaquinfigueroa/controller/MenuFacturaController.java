@@ -224,12 +224,12 @@ public class MenuFacturaController implements Initializable {
             
             while(resultset.next()){
                 int empleadoId = resultset.getInt("empleadoId");
-                String nombreEmpleado = resultset.getString("Empleado");
+                String nombreEmpleado = resultset.getString("nombreEmpleado");
                 String apellidoEmpleado = resultset.getString("apellidoEmpleado");
                 double sueldo = resultset.getDouble("sueldo");
                 String horaEntrada = resultset.getString("horaEntrada");
                 String horaSalida = resultset.getString("horaSalida");
-                String cargo = resultset.getString("cargo");
+                String cargo = resultset.getString("nombreCargo");
                 String encargado = resultset.getString("encargado");
 
                 empleados.add(new Empleado(empleadoId, nombreEmpleado, apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargo, encargado));

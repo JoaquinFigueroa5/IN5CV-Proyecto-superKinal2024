@@ -187,7 +187,7 @@ public class MenuCategoriaProductosController implements Initializable {
             if(tfCategoriaProductoId.getText().equals("")){
                 cargarLista();
             }else{
-                tblCategoriaProductos.setItems(listarCategoriaProductos());
+                tblCategoriaProductos.getItems().add(buscarCategoriaProducto());
                 colCategoriaProductosId.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, Integer>("categoriaProductosId"));
                 colNombreCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("nombreCategoria"));
                 colDescripcionCategoria.setCellValueFactory(new PropertyValueFactory<CategoriaProducto, String>("descripcionCategoria"));
