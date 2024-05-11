@@ -149,17 +149,21 @@ delimiter ;
 -- call sp_listarEmpleados();
 
 -- buscar
-delimiter $$
-create procedure sp_buscarEmpleados(in empId int)
-	begin
-		select E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
-        C.nombreCargo,
-        E2.nombreEmpleado as 'Encargado'from Empleados E1
-        join Cargos C on C.cargoId = E1.cargoId
-        left join Empleados E2 on E1.encargadoId = E2.empleadoId
-			where empleadoId = empId;
-    end $$
-delimiter ;
+DELIMITER $$
+
+CREATE PROCEDURE sp_buscarEmpleados(IN empId INT)
+BEGIN
+    SELECT E1.empleadoId, E1.nombreEmpleado, E1.apellidoEmpleado, E1.sueldo, E1.horaEntrada, E1.horaSalida,
+           C.nombreCargo,
+           E2.nombreEmpleado AS Encargado
+    FROM Empleados E1
+    JOIN Cargos C ON C.cargoId = E1.cargoId
+    LEFT JOIN Empleados E2 ON E1.encargadoId = E2.empleadoId
+    WHERE E1.empleadoId = empId;
+END $$
+
+DELIMITER ;
+
 
 call sp_buscarEmpleados(1);
 
@@ -265,9 +269,14 @@ delimiter ;
 delimiter $$
 create procedure sp_listarPromociones()
 	begin
-		select * from Promociones;
+		select PS.promocionId, PS.precioPromocion, PS.descripcionPromocion, PS.fechaInicio, PS.fechaFinalizacion,  
+			P.nombreProducto from Promociones PS
+            join Productos P on PS.productoId = P.productoId;
     end $$
 delimiter ;
+
+
+select * from Promociones;
 
 
 -- buscar
@@ -289,6 +298,8 @@ create procedure sp_eliminarPromociones(in promoId int)
 				where promocionId = promoId;
     end $$
 delimiter ;
+
+-- call sp_eliminarPromociones(1);
 
 -- editar
 delimiter $$
@@ -592,18 +603,29 @@ delimiter ;
 delimiter $$
 create procedure sp_listarProducto()
 	begin 
-		select * from Productos;
+		select P.productoId, P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor, P.precioCompra, P.imagenProducto,
+			D.nombreDistribuidor, 
+            CP.nombreCategoria from Productos P
+            join Distribuidores D on P.distribuidorId =  D.distribuidorId
+            join CategoriaProductos CP on P.categoriaProductosId = CP.categoriaProductosId;
     end $$
 delimiter ;
+
 
 -- buscar
 delimiter $$
 create procedure sp_buscarProducto(in proId int)
 	begin 
-		select * from Productos
-        where productoId = proId;
+		select P.nombreProducto, P.descripcionProducto, P.cantidadStock, P.precioVentaUnitario, P.precioVentaMayor, P.precioCompra, P.imagenProducto,
+			D.nombreDistribuidor, 
+            CP.nombreCategoria from Productos P
+            join Distribuidores D on P.distribuidorId =  D.distribuidorId
+            join CategoriaProductos CP on P.categoriaProductosId = CP.categoriaProductosId
+				where P.productoId = proId;
     end $$
 delimiter ;
+
+call sp_buscarProducto(2);
 
 -- eliminar 
 delimiter $$
