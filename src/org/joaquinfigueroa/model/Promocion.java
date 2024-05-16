@@ -11,8 +11,8 @@ package org.joaquinfigueroa.model;
  */
 public class Promocion {
     private int promocionId;
-    private String precio;
-    private String descripcion;
+    private String precioPromocion;
+    private String descripcionPromocion;
     private String fechaInicio;
     private String fechaFinalizacion;
     private int productoId;
@@ -21,19 +21,19 @@ public class Promocion {
     public Promocion() {
     }
 
-    public Promocion(int promocionId, String precio, String descripcion, String fechaInicio, String fechaFinalizacion, int productoId) {
+    public Promocion(int promocionId, String precioPromocion, String descripcionPromocion, String fechaInicio, String fechaFinalizacion, int productoId) {
         this.promocionId = promocionId;
-        this.precio = precio;
-        this.descripcion = descripcion;
+        this.precioPromocion = precioPromocion;
+        this.descripcionPromocion = descripcionPromocion;
         this.fechaInicio = fechaInicio;
         this.fechaFinalizacion = fechaFinalizacion;
         this.productoId = productoId;
     }
 
-    public Promocion(int promocionId, String precio, String descripcion, String fechaInicio, String fechaFinalizacion, String producto) {
+    public Promocion(int promocionId, String precioPromocion, String descripcionPromocion, String fechaInicio, String fechaFinalizacion, String producto) {
         this.promocionId = promocionId;
-        this.precio = precio;
-        this.descripcion = descripcion;
+        this.precioPromocion = precioPromocion;
+        this.descripcionPromocion = descripcionPromocion;
         this.fechaInicio = fechaInicio;
         this.fechaFinalizacion = fechaFinalizacion;
         this.producto = producto;
@@ -47,20 +47,20 @@ public class Promocion {
         this.promocionId = promocionId;
     }
 
-    public String getPrecio() {
-        return precio;
+    public String getPrecioPromocion() {
+        return precioPromocion;
     }
 
-    public void setPrecio(String precio) {
-        this.precio = precio;
+    public void setPrecioPromocion(String precioPromocion) {
+        this.precioPromocion = precioPromocion;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescripcionPromocion() {
+        return descripcionPromocion;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescripcionPromocion(String descripcionPromocion) {
+        this.descripcionPromocion = descripcionPromocion;
     }
 
     public String getFechaInicio() {
@@ -97,7 +97,7 @@ public class Promocion {
 
     @Override
     public String toString() {
-        return "Promocion{" + "promocionId=" + promocionId + ", precio=" + precio + ", descripcion=" + descripcion + ", fechaInicio=" + fechaInicio + ", fechaFinalizacion=" + fechaFinalizacion + ", productoId=" + productoId + ", producto=" + producto + '}';
+        return "Promocion{" + "promocionId=" + promocionId + ", precio=" + precioPromocion + ", descripcion=" + descripcionPromocion + ", fechaInicio=" + fechaInicio + ", fechaFinalizacion=" + fechaFinalizacion + ", productoId=" + productoId + ", producto=" + producto + '}';
     }
     
     

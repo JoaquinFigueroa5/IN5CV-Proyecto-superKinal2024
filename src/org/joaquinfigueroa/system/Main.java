@@ -55,6 +55,14 @@ public class Main extends Application {
         return resultado;
     }
     
+    /** public void loginView(){
+        try{
+            LoginController loginView (LoginController)switchScene("LoginView.fxml", );
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    } */
+    
     public void menuPrincipalView(){
         try{
             MenuPrincipalController menuPrincipalView = (MenuPrincipalController)switchScene("MenuPrincipalView.fxml", 859, 772);
@@ -222,6 +230,8 @@ public class Main extends Application {
             System.out.println(e.getMessage());
         }
     }
+    
+    
    
     /**
      * @param args the command line arguments

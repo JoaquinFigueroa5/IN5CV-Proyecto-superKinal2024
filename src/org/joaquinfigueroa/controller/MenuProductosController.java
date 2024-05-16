@@ -96,8 +96,8 @@ public class MenuProductosController implements Initializable {
             }else if(event.getSource() == btnBuscar){
                 Producto producto = buscarProducto();
                 if(producto != null){
-                    tblProductos.getItems().clear();
                     cargarDatos();
+                    tblProductos.getItems().clear();
                     lblNombre.setText(producto.getNombreProducto());
                     InputStream file = producto.getImagenProducto().getBinaryStream();
                     Image image = new Image(file);
@@ -111,8 +111,7 @@ public class MenuProductosController implements Initializable {
                     colPMayor.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaMayor"));
                     colPCompra.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioCompra"));
                     colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("distribuidor"));
-                    colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("categoriaProductos"));
-                    
+                    colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("categoria"));
                 }
             }
             
@@ -152,10 +151,8 @@ public class MenuProductosController implements Initializable {
             colPUnitario.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaUnitario"));
             colPMayor.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioVentaMayor"));
             colPCompra.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioCompra"));
-            
-            colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreDistribuidor"));
-            colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("nombreCategoria"));
-            tblProductos.getSortOrder().add(colProductoId);
+            colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("distribuidor"));
+            colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("categoria"));
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -178,10 +175,11 @@ public class MenuProductosController implements Initializable {
                 double precioVentaUnitario = resultset.getDouble("precioVentaUnitario");
                 double precioVentaMayor = resultset.getDouble("precioVentaMayor");
                 double precioCompra = resultset.getDouble("precioCompra");
-                String distribuidor = resultset.getString("nombreDistribuidor");
-                String categoriaProductoS = resultset.getString("nombreCategoria");
+                Blob imagenProducto = resultset.getBlob("imagenProducto");
+                String distribuidor = resultset.getString("distribuidor");
+                String categoria = resultset.getString("categoria");
                 
-                productos.add(new Producto(productoId, nombre, descripcion, stock, precioVentaUnitario, precioVentaMayor, precioCompra, distribuidor, categoriaProductoS));
+                productos.add(new Producto(productoId, nombre, descripcion, stock, precioVentaUnitario, precioVentaMayor, precioCompra, imagenProducto, distribuidor, categoria));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -230,7 +228,7 @@ public class MenuProductosController implements Initializable {
         int index = 0;
         for(int i = 0 ; i <= cmbCategoria.getItems().size() ; i++){
             String categoriaCmb = cmbCategoria.getItems().get(i).toString();
-            String categoriaTbl = ((Producto)tblProductos.getSelectionModel().getSelectedItems()).getCategoriaProdcutoS();
+            String categoriaTbl = ((Producto)tblProductos.getSelectionModel().getSelectedItems()).getCategoria();
             if(categoriaCmb.equals(categoriaTbl)){
                 index = i;
                 break;
@@ -259,8 +257,8 @@ public class MenuProductosController implements Initializable {
                 Double PVMayor = resultset.getDouble("precioVentaMayor");
                 Double PCompra = resultset.getDouble("precioCompra");
                 Blob imagen = resultset.getBlob("imagenProducto");
-                String distribuidor = resultset.getString("nombreDistribuidor");
-                String categoria = resultset.getString("nombreCategoria");
+                String distribuidor = resultset.getString("distribuidor");
+                String categoria = resultset.getString("categoria");
                 
                 producto = new Producto(productoId, nombre, descripcion, stock, PVUnitario, PVMayor, PCompra, imagen, distribuidor, categoria);
             }

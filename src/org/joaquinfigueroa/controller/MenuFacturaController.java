@@ -148,8 +148,8 @@ public class MenuFacturaController implements Initializable {
                 Date fecha = resultset.getDate("fecha");
                 Time hora = resultset.getTime("hora");
                 Double total = resultset.getDouble("total");
-                String cliente = resultset.getString("cliente");
-                String empleado = resultset.getString("empleado");
+                String cliente = resultset.getString("nombre");
+                String empleado = resultset.getString("nombreEmpleado");
 
                 
                 facturas.add(new Factura(facturaId, fecha.toLocalDate(), hora.toLocalTime(), total, cliente, empleado));

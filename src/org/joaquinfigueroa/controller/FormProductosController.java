@@ -103,7 +103,7 @@ public class FormProductosController implements Initializable {
         taDescripcion.setText(producto.getDescripcionProducto());
         tfStock.setText(Integer.toString(producto.getCantidadStock()));
         tfPUnitario.setText(Double.toString(producto.getPrecioVentaUnitario()));
-        tfPMayor.setText(Double.toString(producto.getPrecioVenteMayor()));
+        tfPMayor.setText(Double.toString(producto.getPrecioVentaMayor()));
         tfPCompra.setText(Double.toString(producto.getPrecioCompra()));
         cmbDistribuidor.getSelectionModel().select(obtenerIndexDistribuidor());
         cmbCategoria.getSelectionModel().select(obtenerIndexCategoria());
@@ -130,7 +130,7 @@ public class FormProductosController implements Initializable {
         int index = 0;
         for(int i = 0 ; i <= cmbCategoria.getItems().size() ; i++){
             String categoriaCmb = cmbCategoria.getItems().get(i).toString();
-            String categoriaTbl = ((Producto)tblProductos.getSelectionModel().getSelectedItems()).getCategoriaProdcutoS();
+            String categoriaTbl = ((Producto)tblProductos.getSelectionModel().getSelectedItems()).getCategoria();
             if(categoriaCmb.equals(categoriaTbl)){
                 index = i;
                 break;

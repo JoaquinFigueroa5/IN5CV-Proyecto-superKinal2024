@@ -75,7 +75,7 @@ public class MenuPromocionesController implements Initializable {
                 String descripcionPromocion = resultset.getString("descripcionPromocion");
                 String fechaInicio = resultset.getString("fechaInicio");
                 String fechaFinalizacion = resultset.getString("fechaFInalizacion");
-                String nombreProducto = resultset.getString("nombreProducto");
+                String nombreProducto = resultset.getString("producto");
                 
                 promociones.add(new Promocion(promocionId, precioPromocion, descripcionPromocion, fechaInicio, fechaFinalizacion, nombreProducto));
             }
@@ -107,7 +107,7 @@ public class MenuPromocionesController implements Initializable {
         colDescripcion.setCellValueFactory(new PropertyValueFactory<Promocion, String>("descripcionPromocion"));
         colFechaInicio.setCellValueFactory(new PropertyValueFactory<Promocion, String>("fechaInicio"));
         colFechaFinalizacion.setCellValueFactory(new PropertyValueFactory<Promocion, Integer>("fechaFinalizacion"));
-        colProducto.setCellValueFactory(new PropertyValueFactory<Promocion, String>("nombreProducto"));
+        colProducto.setCellValueFactory(new PropertyValueFactory<Promocion, String>("producto"));
         tblPromociones.getSortOrder().add(colPromocionId);
 
 
@@ -117,8 +117,8 @@ public class MenuPromocionesController implements Initializable {
         Promocion pn = (Promocion)tblPromociones.getSelectionModel().getSelectedItem();
         if(pn != null){
             tfPromocionId.setText(Integer.toString(pn.getPromocionId()));
-            tfPrecio.setText(pn.getPrecio());
-            taDescripcion.setText(pn.getDescripcion());
+            tfPrecio.setText(pn.getPrecioPromocion());
+            taDescripcion.setText(pn.getDescripcionPromocion());
             tfFechaInicio.setText(pn.getFechaInicio());
             tfFechaFinalizacion.setText(pn.getFechaFinalizacion());
             cmbProducto.getSelectionModel().select(obtenerIndexProducto());
@@ -211,8 +211,8 @@ public class MenuPromocionesController implements Initializable {
                 double precioVentaUnitario = resultset.getDouble("precioVentaUnitario");
                 double precioVentaMayor = resultset.getDouble("precioVentaMayor");
                 double precioCompra = resultset.getDouble("precioCompra");
-                String distribuidor = resultset.getString("nombreDistribuidor");
-                String categoriaProductoS = resultset.getString("nombreCategoria");
+                String distribuidor = resultset.getString("distribuidor");
+                String categoriaProductoS = resultset.getString("categoria");
                 
                 productos.add(new Producto(productoId, nombre, descripcion, stock, precioVentaUnitario, precioVentaMayor, precioCompra, distribuidor, categoriaProductoS));
             }
