@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -38,6 +39,7 @@ import org.joaquinfigueroa.model.CategoriaProducto;
 import org.joaquinfigueroa.model.Distribuidor;
 import org.joaquinfigueroa.model.Producto;
 import org.joaquinfigueroa.system.Main;
+import org.joaquinfigueroa.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -307,13 +309,30 @@ public class FormProductosController implements Initializable {
             stage.menuProductoView();
         }else if(event.getSource() == btnCargar){
             if(op == 1){
-                agregarProductos();
-                ProductoDTO.getProductoDTO().setProducto(null);
-                stage.menuProductoView();
+                if(!tfNombre.getText().equals("") && !taDescripcion.getText().equals("") && !tfStock.getText().equals("")){
+                    agregarProductos();
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
+                    ProductoDTO.getProductoDTO().setProducto(null);
+                    stage.menuProductoView();
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombre.requestFocus();
+                    return;
+                }
+             
             }else if(op == 2){
-                editarProductos();
-                ProductoDTO.getProductoDTO().setProducto(null);
-                stage.menuProductoView();
+                if(!tfNombre.getText().equals("") && !taDescripcion.getText().equals("") && !tfStock.getText().equals("")){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(406).get() == ButtonType.OK){
+                        editarProductos();
+                        ProductoDTO.getProductoDTO().setProducto(null);
+                        stage.menuProductoView();
+                    }
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombre.requestFocus();    
+                    return;
+                }
+                
             }
             
             stage.menuProductoView();

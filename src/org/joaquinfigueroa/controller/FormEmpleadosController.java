@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +29,7 @@ import org.joaquinfigueroa.dto.EmpleadoDTO;
 import org.joaquinfigueroa.model.Cargo;
 import org.joaquinfigueroa.model.Empleado;
 import org.joaquinfigueroa.system.Main;
+import org.joaquinfigueroa.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -51,8 +53,6 @@ public class FormEmpleadosController implements Initializable {
     @FXML
     ComboBox cmbCargo, cmbEncargado;
     
-    @FXML
-    TableView tblEmpleados;
     
 
 
@@ -63,9 +63,11 @@ public class FormEmpleadosController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if(EmpleadoDTO.getEmpleadoDTO().getEmpleado() != null){
             cargarDatos(EmpleadoDTO.getEmpleadoDTO().getEmpleado());
+            
         }
         cmbCargo.setItems(listarCargos());
         cmbEncargado.setItems(listarEncargados());
+        
         
     }    
     
@@ -151,37 +153,10 @@ public class FormEmpleadosController implements Initializable {
         tfSueldo.setText(Double.toString(empleado.getSueldo()));
         tfEntrada.setText(empleado.getHoraEntrada());
         tfSalida.setText(empleado.getHoraSalida());
-        cmbCargo.getSelectionModel().select(obtenerIndexCargo());
-        cmbEncargado.getSelectionModel().select(obtenerIndexEncargado());
-
+        cmbCargo.getSelectionModel().select(empleado.getNombreCargo());
+        cmbEncargado.getSelectionModel().select(empleado.getEncargado());
     }
     
-    public int obtenerIndexCargo(){
-        int index = 0;
-        for(int i = 0 ; i <= cmbCargo.getItems().size() ; i++){
-            String cargoCmb = cmbCargo.getItems().get(i).toString();
-            String cargoTbl = ((Empleado)tblEmpleados.getSelectionModel().getSelectedItems()).getNombreCargo();
-            if(cargoCmb.equals(cargoTbl)){
-                index = i;
-                break;
-            }
-            
-        }
-        return index;
-    }
-    public int obtenerIndexEncargado(){
-        int index = 0;
-        for(int i = 0 ; i <= cmbEncargado.getItems().size() ; i++){
-            String encargadoCmb = cmbEncargado.getItems().get(i).toString();
-            String encargadoTbl = ((Empleado)tblEmpleados.getSelectionModel().getSelectedItems()).getEncargado();
-            if(encargadoCmb.equals(encargadoTbl)){
-                index = i;
-                break;
-            }
-            
-        }
-        return index;
-    }
     
     
     public Main getStage() {
@@ -207,7 +182,7 @@ public class FormEmpleadosController implements Initializable {
             statement.setString(4, tfEntrada.getText());
             statement.setString(5, tfSalida.getText());
             statement.setInt(6, ((Cargo)cmbCargo.getSelectionModel().getSelectedItem()).getCargoId());
-            statement.setInt(7, ((Empleado)cmbEncargado.getSelectionModel().getSelectedItem()).getEncargadoId());
+            statement.setInt(7, ((Empleado)cmbEncargado.getSelectionModel().getSelectedItem()).getEmpleadoId());
 
             statement.execute();
         }catch(SQLException e){
@@ -237,7 +212,7 @@ public class FormEmpleadosController implements Initializable {
             statement.setString(5, tfEntrada.getText());
             statement.setString(6, tfSalida.getText());
             statement.setInt(7, ((Cargo)cmbCargo.getSelectionModel().getSelectedItem()).getCargoId());
-            statement.setInt(8, ((Empleado)cmbEncargado.getSelectionModel().getSelectedItem()).getEncargadoId());
+            statement.setInt(8, ((Empleado)cmbEncargado.getSelectionModel().getSelectedItem()).getEmpleadoId());
             statement.execute();
 
         }catch(SQLException e){
@@ -263,16 +238,43 @@ public class FormEmpleadosController implements Initializable {
             stage.menuEmpleadosView();
         }else if(event.getSource() == btnAgregar){
             if(op == 1){
-                agregarEmpleado();
-                EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
-                stage.menuEmpleadosView();
+                if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("") && !tfSueldo.getText().equals("") && !tfEntrada.getText().equals("") && !tfSalida.getText().equals("") && !cmbCargo.getItems().equals("") && !cmbEncargado.getItems().equals("")){
+                    agregarEmpleado();
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
+                    EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
+                    stage.menuEmpleadosView();
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombre.requestFocus();
+                    return;
+                }
+              
             }else if(op == 2){
-                editarEmpleado();
-                EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
-                stage.menuEmpleadosView();
+                if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("") && !tfSueldo.getText().equals("") && !tfEntrada.getText().equals("") && !tfSalida.getText().equals("") && !cmbCargo.getItems().equals("") && !cmbEncargado.getItems().equals("")){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(406).get() == ButtonType.OK){
+                        editarEmpleado();
+                        EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
+                        stage.menuEmpleadosView();
+                    }
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombre.requestFocus();    
+                    return;
+                }
+                
+            }else if(op == 3){
+                if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("") && !tfSueldo.getText().equals("") && !tfEntrada.getText().equals("") && !tfSalida.getText().equals("") && !cmbCargo.getItems().equals("") && !cmbEncargado.getItems().equals("")){
+                    agregarEmpleado();
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
+                    EmpleadoDTO.getEmpleadoDTO().setEmpleado(null);
+                    stage.formUsuarioView();
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombre.requestFocus();
+                    return;
+                }
             }
             
-            stage.menuEmpleadosView();
         }
       
     }

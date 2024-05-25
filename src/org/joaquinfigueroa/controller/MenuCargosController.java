@@ -28,6 +28,7 @@ import org.joaquinfigueroa.dto.CargoDTO;
 import org.joaquinfigueroa.model.Cargo;
 import org.joaquinfigueroa.model.Cliente;
 import org.joaquinfigueroa.system.Main;
+import org.joaquinfigueroa.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -136,9 +137,19 @@ public class MenuCargosController implements Initializable {
     
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnAgregar){
-            agregarCargo();
-            vaciarCampos();
-            cargarLista();
+            if(!tfNombreCargo.getText().equals("") && !taDescripcion.getText().equals("")){
+                    agregarCargo();
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
+                    CargoDTO.getCargoDTO().setCargo(null);
+                    vaciarCampos();
+                    cargarLista();
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombreCargo.requestFocus();
+                    return;
+                }
+            
+ 
         }else if(event.getSource() == btnRegresar){
             stage.menuPrincipalView();
         }else if(event.getSource() == btnEditar){

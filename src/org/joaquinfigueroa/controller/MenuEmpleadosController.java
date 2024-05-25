@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,6 +27,7 @@ import org.joaquinfigueroa.dao.Conexion;
 import org.joaquinfigueroa.dto.EmpleadoDTO;
 import org.joaquinfigueroa.model.Empleado;
 import org.joaquinfigueroa.system.Main;
+import org.joaquinfigueroa.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -99,6 +101,7 @@ public class MenuEmpleadosController implements Initializable {
         }
         return FXCollections.observableList(empleados);
     }
+    
     
     
     
@@ -199,9 +202,11 @@ public class MenuEmpleadosController implements Initializable {
         }else if(event.getSource() == btnRegresar){
             stage.menuPrincipalView();
         }else if(event.getSource() == btnEliminar){
-            int empId = ((Empleado)tblEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId();
-            eliminarEmpleados(empId);
-            cargarLista();
+            if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(405).get() == ButtonType.OK){
+                int empId = ((Empleado)tblEmpleados.getSelectionModel().getSelectedItem()).getEmpleadoId();
+                eliminarEmpleados(empId);
+                cargarLista(); 
+            }
         }else if (event.getSource() == btnBuscar){
             tblEmpleados.getItems().clear();
             if(tfEmpleadosId.getText().equals("")){

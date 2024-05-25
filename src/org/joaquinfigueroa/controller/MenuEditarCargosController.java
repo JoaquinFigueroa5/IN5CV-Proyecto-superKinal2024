@@ -15,12 +15,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.joaquinfigueroa.dao.Conexion;
 import org.joaquinfigueroa.dto.CargoDTO;
 import org.joaquinfigueroa.model.Cargo;
 import org.joaquinfigueroa.system.Main;
+import org.joaquinfigueroa.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -95,9 +97,20 @@ public class MenuEditarCargosController implements Initializable {
         if(event.getSource() == btnCancelar){
             stage.menuCargosView();
         }else if(event.getSource() == btnAgregar){
-            editarCargo();
+            if(!tfNombreCargo.getText().equals("") && !taDescripcion.getText().equals("")){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(406).get() == ButtonType.OK){
+                        editarCargo();
+                        CargoDTO.getCargoDTO().setCargo(null);
+                        stage.menuCargosView();
+                    }
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombreCargo.requestFocus();    
+                    return;
+                }
+            
             CargoDTO.getCargoDTO().setCargo(null);
-            stage.menuCargosView();
+            
         }
     }
     

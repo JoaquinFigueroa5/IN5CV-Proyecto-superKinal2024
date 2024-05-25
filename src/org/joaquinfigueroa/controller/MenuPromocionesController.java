@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +29,7 @@ import org.joaquinfigueroa.dao.Conexion;
 import org.joaquinfigueroa.model.Producto;
 import org.joaquinfigueroa.model.Promocion;
 import org.joaquinfigueroa.system.Main;
+import org.joaquinfigueroa.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -113,9 +115,9 @@ public class MenuPromocionesController implements Initializable {
 
     }
     
-    public void cargarDatosEditar(){
-        Promocion pn = (Promocion)tblPromociones.getSelectionModel().getSelectedItem();
-        if(pn != null){
+    public void cargarDatosEditar() {
+        Promocion pn = (Promocion) tblPromociones.getSelectionModel().getSelectedItem();
+        if (pn != null) {
             tfPromocionId.setText(Integer.toString(pn.getPromocionId()));
             tfPrecio.setText(pn.getPrecioPromocion());
             taDescripcion.setText(pn.getDescripcionPromocion());
@@ -127,9 +129,9 @@ public class MenuPromocionesController implements Initializable {
     
     public int obtenerIndexProducto(){
         int index = 0;
-        for(int i = 0 ; i <= cmbProducto.getItems().size() ; i++){
+        for(int i = 0 ; i < cmbProducto.getItems().size() ; i++){
             String productoCmb = cmbProducto.getItems().get(i).toString();
-            String productoTbl = ((Promocion)tblPromociones.getSelectionModel().getSelectedItems()).getProducto();
+            String productoTbl = ((Promocion)tblPromociones.getSelectionModel().getSelectedItem()).getProducto();
             if(productoCmb.equals(productoTbl)){
                 index = i;
                 break;
@@ -237,6 +239,29 @@ public class MenuPromocionesController implements Initializable {
         return FXCollections.observableList(productos);
     }
     
+    public void eliminarPromociones(int promId){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_eliminarPromociones(?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(1, promId);
+            statement.execute();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
     public void vaciarCampos(){
         tfPromocionId.clear();
         tfPrecio.clear();
@@ -262,13 +287,35 @@ public class MenuPromocionesController implements Initializable {
             stage.menuPrincipalView();
         }else if(event.getSource() == btnGuardar){
             if(tfPromocionId.getText().equals("")){
-                agregarPromociones();
-                cargarDatos();
+                if(!tfPrecio.getText().equals("") && !taDescripcion.getText().equals("") && !tfFechaInicio.getText().equals("") && !tfFechaFinalizacion.getText().equals("")){
+                    agregarPromociones();
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
+                    cargarDatos();
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfPrecio.requestFocus();
+                    return;
+                }
             }else{
-                editarPromociones();
+                if(!tfPrecio.getText().equals("") && !taDescripcion.getText().equals("") && !tfFechaInicio.getText().equals("") && !tfFechaFinalizacion.getText().equals("")){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(406).get() == ButtonType.OK){
+                        editarPromociones();
+                    }
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfPrecio.requestFocus();    
+                    return;
+                }
+                
             }
         }else if(event.getSource() == btnVaciar){
             vaciarCampos();
+        }else if(event.getSource() == btnEliminar){
+            if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(405).get() == ButtonType.OK){
+                int promId = ((Promocion)tblPromociones.getSelectionModel().getSelectedItem()).getPromocionId();
+                eliminarPromociones(promId);
+                cargarDatos();
+            }
         }
     }
 

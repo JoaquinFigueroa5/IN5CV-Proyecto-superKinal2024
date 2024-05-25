@@ -34,8 +34,9 @@ public class Main extends Application {
         Image icon = new Image("org/joaquinfigueroa/image/Zanahoria.png");
         stage.getIcons().add(icon);
         stage.setTitle("Super Kinal App:D");
-        menuPrincipalView();
+        loginView();
         stage.show();
+
     }
     
     public Initializable switchScene(String fxmlName, int width, int height) throws Exception{
@@ -54,14 +55,7 @@ public class Main extends Application {
         
         return resultado;
     }
-    
-    /** public void loginView(){
-        try{
-            LoginController loginView (LoginController)switchScene("LoginView.fxml", );
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    } */
+   
     
     public void menuPrincipalView(){
         try{
@@ -222,14 +216,24 @@ public class Main extends Application {
         }
     }
     
-    public void menuDetalleFacturasView(){
+    public void loginView(){
         try{
-            MenuDetalleFacturaController menuDetalleFacturasView = (MenuDetalleFacturaController)switchScene("MenuDetalleFacturaView", 980, 593);
-            menuDetalleFacturasView.setStage(this);
+            LoginController loginView = (LoginController)switchScene("LoginView.fxml", 464, 632);
+            loginView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
     }
+    
+    public void formUsuarioView(){
+        try{
+            ResgistrarUsuarioController formUsuarioView = (ResgistrarUsuarioController)switchScene("ResgistrarUsuarioView.fxml", 464, 632);
+            formUsuarioView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
     
     
    
@@ -237,7 +241,6 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
         launch(args);
     }
 

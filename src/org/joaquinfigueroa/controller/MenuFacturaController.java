@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -33,6 +34,7 @@ import org.joaquinfigueroa.model.Cliente;
 import org.joaquinfigueroa.model.Empleado;
 import org.joaquinfigueroa.model.Factura;
 import org.joaquinfigueroa.system.Main;
+import org.joaquinfigueroa.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -68,10 +70,28 @@ public class MenuFacturaController implements Initializable {
             stage.menuPrincipalView();
         }else if(event.getSource() == btnGuardar){
             if(tfFacturaId.getText().equals("")){
-                agregarFacturas();
-                cargarDatos();
+                if(!tfHora.getText().equals("") && !tfFecha.getText().equals("")){
+                    agregarFacturas();
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
+                    cargarDatos();
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfHora.requestFocus();
+                    return;
+                }
+               
             }else{
-                editarFacturas();
+                if(!tfHora.getText().equals("") && !tfTotal.getText().equals("") && !tfFecha.getText().equals("")){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(406).get() == ButtonType.OK){
+                        editarFacturas();
+                        cargarDatos();
+                    }
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfHora.requestFocus();    
+                    return;
+                }
+                
             }
         }else if(event.getSource() == btnVaciar){
             vaciarCampos();
@@ -102,6 +122,9 @@ public class MenuFacturaController implements Initializable {
         Factura fa = (Factura)tblFacturas.getSelectionModel().getSelectedItem();
         if(fa != null){
             tfFacturaId.setText(Integer.toString(fa.getFacturaId()));
+            tfFecha.setText(fa.getFecha().toString());
+            tfHora.setText(fa.getHora().toString());
+            tfTotal.setText(Double.toString(fa.getTotal()));
             cmbCliente.getSelectionModel().select(obtenerIndexCliente());
             cmbEmpleado.getSelectionModel().select(obtenerIndexEmpleado());
         }
@@ -109,9 +132,9 @@ public class MenuFacturaController implements Initializable {
     
     public int obtenerIndexCliente(){
         int index = 0;
-        for(int i = 0 ; i <= cmbCliente.getItems().size() ; i++){
+        for(int i = 0 ; i < cmbCliente.getItems().size() ; i++){
             String clienteCmb = cmbCliente.getItems().get(i).toString();
-            String clienteTbl = ((Factura)tblFacturas.getSelectionModel().getSelectedItems()).getCliente();
+            String clienteTbl = ((Factura)tblFacturas.getSelectionModel().getSelectedItem()).getCliente();
             if(clienteCmb.equals(clienteTbl)){
                 index = i;
                 break;
@@ -123,9 +146,9 @@ public class MenuFacturaController implements Initializable {
     
     public int obtenerIndexEmpleado(){
         int index = 0;
-        for(int i = 0 ; i <= cmbEmpleado.getItems().size() ; i++){
+        for(int i = 0 ; i < cmbEmpleado.getItems().size() ; i++){
             String empleadoCmb = cmbEmpleado.getItems().get(i).toString();
-            String empleadoTbl = ((Factura)tblFacturas.getSelectionModel().getSelectedItems()).getEmpleado();
+            String empleadoTbl = ((Factura)tblFacturas.getSelectionModel().getSelectedItem()).getEmpleado();
             if(empleadoCmb.equals(empleadoTbl)){
                 index = i;
                 break;

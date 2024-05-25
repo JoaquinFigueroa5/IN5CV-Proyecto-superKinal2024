@@ -121,7 +121,7 @@ create procedure sp_agregarEmpleados(in nomEmp varchar(30),in apeEmp varchar(30)
     end $$
 delimiter ;
 
-call sp_agregarEmpleados('Alexi', 'Kun', 8745.09, '09:00:00', '16:00:00', 2, 2);
+call sp_agregarEmpleados('Saul', 'De Leon', 8745.09, '09:00:00', '16:00:00', 1, null);
 
 -- listar
 delimiter $$
@@ -180,7 +180,7 @@ delimiter ;
 
 -- editar
 delimiter $$
-create procedure sp_editarEmpleados(in empId int, in nomEmp varchar(30),in apeEmp varchar(30), in sue decimal(10, 2), in hoEn time, in hoSa time, in carId int, encarId int)
+create procedure sp_editarEmpleados(in empId int, in nomEmp varchar(30), in apeEmp varchar(30), in sue decimal(10, 2), in hoEn time, in hoSa time, in carId int, encarId int)
 	begin
 		update Empleados
 			set 
@@ -194,6 +194,9 @@ create procedure sp_editarEmpleados(in empId int, in nomEmp varchar(30),in apeEm
             where empleadoId = empId;
     end $$
 delimiter ;
+
+select * from Empleados;
+call sp_editarEmpleados(4, 'Sebastian', 'Lopez', 2043.26, '04:00:00', '20:00:00', 1, 2);
 
 -- ----------------- FACTURAS -------------------------------------
 

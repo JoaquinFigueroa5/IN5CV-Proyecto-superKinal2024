@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuFacturaController">
+<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuFacturaController">
    <children>
       <ImageView fitHeight="593.0" fitWidth="980.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,7 +20,7 @@
       <TextField fx:id="tfHora" layoutX="439.0" layoutY="158.0" />
       <ComboBox fx:id="cmbCliente" layoutX="55.0" layoutY="294.0" prefWidth="150.0" />
       <ComboBox fx:id="cmbEmpleado" layoutX="55.0" layoutY="420.0" prefWidth="150.0" />
-      <TextField fx:id="tfTotal" editable="false" layoutX="55.0" layoutY="502.0" promptText="TOTAL" />
+      <TextField fx:id="tfTotal" layoutX="55.0" layoutY="502.0" promptText="TOTAL" />
       <TableView fx:id="tblFacturas" layoutX="250.0" layoutY="210.0" onMouseClicked="#cargarDatosEditar" prefHeight="292.0" prefWidth="648.0">
         <columns>
           <TableColumn fx:id="colFacturaId" prefWidth="75.0" text="facturaId" />

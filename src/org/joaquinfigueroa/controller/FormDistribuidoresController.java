@@ -14,12 +14,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import org.joaquinfigueroa.dao.Conexion;
 import org.joaquinfigueroa.dto.DistribuidorDTO;
 import org.joaquinfigueroa.model.Distribuidor;
 
 import org.joaquinfigueroa.system.Main;
+import org.joaquinfigueroa.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -79,13 +81,32 @@ public class FormDistribuidoresController implements Initializable {
             stage.menuDistribuidoresView();
         }else if(event.getSource() == btnAgregar){
             if(op == 1){
-                agregarDistribuidor();
-                DistribuidorDTO.getDistribuidorDTO().setDistribuidor(null);
-                stage.menuDistribuidoresView();
+                if(!tfNombre.getText().equals("") && !tfDireccion.getText().equals("") && !tfNIT.getText().equals("") && !tfTelefono.getText().equals("")){
+                    agregarDistribuidor();
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(401);
+                    DistribuidorDTO.getDistribuidorDTO().setDistribuidor(null);
+                    stage.menuDistribuidoresView();
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombre.requestFocus();
+                    return;
+                }
+
             }else if(op == 2){
-                editarDistribuidor();
-                DistribuidorDTO.getDistribuidorDTO().setDistribuidor(null);
-                stage.menuDistribuidoresView();
+                if(!tfNombre.getText().equals("") && !tfDireccion.getText().equals("") && !tfNIT.getText().equals("") && !tfTelefono.getText().equals("")){
+                    if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(406).get() == ButtonType.OK){
+                        editarDistribuidor();
+                        DistribuidorDTO.getDistribuidorDTO().setDistribuidor(null);
+                        stage.menuDistribuidoresView();
+                    }
+                }else{
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(400);
+                    tfNombre.requestFocus();    
+                    return;
+                }
+                
+                
+                
             }
             
             stage.menuDistribuidoresView();

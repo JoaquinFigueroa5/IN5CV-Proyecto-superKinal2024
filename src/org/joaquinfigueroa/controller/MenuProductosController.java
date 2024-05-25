@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -38,6 +39,7 @@ import org.joaquinfigueroa.dao.Conexion;
 import org.joaquinfigueroa.dto.ProductoDTO;
 import org.joaquinfigueroa.model.Producto;
 import org.joaquinfigueroa.system.Main;
+import org.joaquinfigueroa.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -90,9 +92,11 @@ public class MenuProductosController implements Initializable {
                 ProductoDTO.getProductoDTO().setProducto((Producto)tblProductos.getSelectionModel().getSelectedItem());
                 stage.formProductoView(2);
             }else if(event.getSource() == btnEliminar){
-                int proId = ((Producto)tblProductos.getSelectionModel().getSelectedItem()).getProductoId();
-                eliminarProducto(proId);
-                cargarDatos();
+                if(SuperKinalAlert.getInstance().mostrarAlertaConfirmacion(405).get() == ButtonType.OK){
+                    int proId = ((Producto)tblProductos.getSelectionModel().getSelectedItem()).getProductoId();
+                    eliminarProducto(proId);
+                    cargarDatos();
+                }
             }else if(event.getSource() == btnBuscar){
                 Producto producto = buscarProducto();
                 if(producto != null){
@@ -153,6 +157,7 @@ public class MenuProductosController implements Initializable {
             colPCompra.setCellValueFactory(new PropertyValueFactory<Producto, Double>("precioCompra"));
             colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("distribuidor"));
             colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("categoria"));
+            tblProductos.getSortOrder().add(colProductoId);
         }catch(Exception e){
             e.printStackTrace();
         }
