@@ -42,7 +42,7 @@ import org.joaquinfigueroa.system.Main;
 import org.joaquinfigueroa.utils.SuperKinalAlert;
 
 /**
- * FXML Controller class
+ * FXML Controller class.
  *
  * @author Joaki
  */
