@@ -214,9 +214,10 @@ public class MenuTicketSoporteController implements Initializable {
                 Double total = resultset.getDouble("total");
                 String cliente = resultset.getString("nombre");
                 String empleado = resultset.getString("nombreEmpleado");
+                String producto = resultset.getString("producto");
 
                 
-                facturas.add(new Factura(facturaId, fecha.toLocalDate(), hora.toLocalTime(), total, cliente, empleado));
+                facturas.add(new Factura(facturaId, fecha.toLocalDate(), hora.toLocalTime(), total, cliente, empleado, producto));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

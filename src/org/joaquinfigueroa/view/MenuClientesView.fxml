@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuClientesController">
+<AnchorPane id="AnchorPane" prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuClientesController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -40,9 +40,9 @@
         </rowConstraints>
          <children>
             <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="54.0" prefWidth="92.0" style="-fx-background-color: #F98F4B;" text="Agregar" />
-            <Button fx:id="btnEliminar" layoutX="10.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="54.0" prefWidth="92.0" style="-fx-background-color: #F98F4B;" text="Eliminar" GridPane.rowIndex="2" />
             <Button fx:id="btnReporte" layoutX="10.0" layoutY="101.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="92.0" style="-fx-background-color: #237092;" text="Reporte" GridPane.rowIndex="3" />
             <Button fx:id="btnEditar" layoutX="10.0" layoutY="170.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="54.0" prefWidth="92.0" style="-fx-background-color: #237092;" text="Editar" GridPane.rowIndex="1" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="54.0" prefWidth="92.0" style="-fx-background-color: #F98F4B;" text="Eliminar" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button fx:id="btnRegresar" layoutX="583.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="54.0" prefWidth="103.0" style="-fx-background-color: #F98F4B;" text="Regresar" />
@@ -53,5 +53,6 @@
             <Image url="@../image/Lupa.png" />
          </image>
       </ImageView>
+      <Button fx:id="btnVerClientes" layoutX="253.0" layoutY="520.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="54.0" prefWidth="92.0" style="-fx-background-color: #F98F4B;" text="Ver Clientes" />
    </children>
 </AnchorPane>

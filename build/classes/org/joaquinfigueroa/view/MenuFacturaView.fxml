@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuFacturaController">
+<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuDetalleFacturasController">
    <children>
       <ImageView fitHeight="593.0" fitWidth="980.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,14 +28,15 @@
             <TableColumn fx:id="colHora" prefWidth="94.0" text="hora" />
             <TableColumn fx:id="colTotal" prefWidth="103.0" text="total" />
             <TableColumn fx:id="colCliente" prefWidth="122.0" text="cliente" />
-            <TableColumn fx:id="colEmpleado" prefWidth="154.0" text="empleado" />
+            <TableColumn fx:id="colEmpleado" prefWidth="77.0" text="empleado" />
+            <TableColumn fx:id="colProducto" prefWidth="77.0" text="producto" />
         </columns>
       </TableView>
-      <Button fx:id="btnVaciar" layoutX="319.0" layoutY="528.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Vaciar" />
-      <Button fx:id="btnGuardar" layoutX="448.0" layoutY="528.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #237092; -fx-background-radius: 10;" text="Guardar" />
-      <Button fx:id="btnRegresar" layoutX="574.0" layoutY="528.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Regresar" />
-      <Button fx:id="btnEliminar" layoutX="700.0" layoutY="528.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #237092; -fx-background-radius: 10;" text="Eliminar" />
+      <Button fx:id="btnVaciar" layoutX="422.0" layoutY="521.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Vaciar" />
+      <Button fx:id="btnGuardar" layoutX="542.0" layoutY="521.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #237092; -fx-background-radius: 10;" text="Guardar" />
+      <Button fx:id="btnRegresar" layoutX="668.0" layoutY="521.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Regresar" />
       <TextField fx:id="tfFecha" layoutX="266.0" layoutY="158.0" />
-      <Button fx:id="btnTotal" layoutX="820.0" layoutY="528.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #F98F4B; -fx-background-radius: 10;" text="Total" />
+      <ComboBox fx:id="cmbProducto" layoutX="619.0" layoutY="158.0" prefWidth="150.0" promptText="Productos" />
+      <Button fx:id="btnVerFactura" layoutX="790.0" layoutY="521.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="86.0" style="-fx-background-color: #237092; -fx-background-radius: 10;" text="Ver Factura" />
    </children>
 </AnchorPane>

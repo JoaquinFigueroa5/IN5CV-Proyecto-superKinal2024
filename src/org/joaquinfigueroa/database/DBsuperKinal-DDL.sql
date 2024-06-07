@@ -1,4 +1,4 @@
--- drop database if exists superKinalIN5CV;
+drop database if exists superKinalIN5CV;
 
 create database if not exists superkinalIN5CV;
  
@@ -40,32 +40,6 @@ create table Empleados(
 		references Empleados (empleadoId)
 );
  
-create table Facturas(
-	facturaId int not null auto_increment,
-    fecha date not null,
-    hora time not null,
-    total decimal(10,2),
-    clienteId int not null,
-    empleadoId int not null,
-    primary key PK_facturaId (facturaId),
-    constraint FK_Facturas_Clientes foreign key (clienteId)
-		references Clientes(clienteId),
-	constraint FK_Facturas_Empleados foreign key (empleadoId)
-		references Empleados(empleadoId)
-);
- 
-create table Ticketsoporte(
-	ticketSoporteId int not null auto_increment,
-    descripcionTicket varchar(250) not null,
-    estatus varchar(30) not null,
-    clienteId int not null,
-    facturaId int,
-    primary key PK_ticketSoporteId (ticketSoporteId),
-    constraint FK_Ticketsoporte_Clientes foreign key (clienteId)
-		references Clientes (clienteId),
-	constraint FK_Ticketsoporte_Facturas foreign key (facturaId)
-		references Facturas (facturaId)
-);
  
 create table Distribuidores(
 	distribuidorId int not null auto_increment,
@@ -100,6 +74,36 @@ create table Productos(
 		references Distribuidores (distribuidorId),
 	constraint FK_Productos_categoriaProductos foreign key (categoriaProductosId)
 		references categoriaProductos (categoriaProductosId)
+);
+
+create table Facturas(
+	facturaId int not null auto_increment,
+    fecha date not null,
+    hora time not null,
+    total decimal(10,2),
+    clienteId int not null,
+    empleadoId int not null,
+    productoId int not null,
+    primary key PK_facturaId (facturaId),
+    constraint FK_Facturas_Clientes foreign key (clienteId)
+		references Clientes(clienteId),
+	constraint FK_Facturas_Empleados foreign key (empleadoId)
+		references Empleados(empleadoId),
+	constraint FK_Facturas_Productos foreign key (productoId)
+		references Productos(productoId)
+);
+
+create table Ticketsoporte(
+	ticketSoporteId int not null auto_increment,
+    descripcionTicket varchar(250) not null,
+    estatus varchar(30) not null,
+    clienteId int not null,
+    facturaId int,
+    primary key PK_ticketSoporteId (ticketSoporteId),
+    constraint FK_Ticketsoporte_Clientes foreign key (clienteId)
+		references Clientes (clienteId),
+	constraint FK_Ticketsoporte_Facturas foreign key (facturaId)
+		references Facturas (facturaId)
 );
  
 create table Compras(
@@ -146,6 +150,12 @@ create table detalleFactura(
 
 select * from Clientes;
 
+create table NivelesAcceso(
+	nivelAccesoId int not null auto_increment,
+    nivelAcceso varchar(40) not null,
+    primary key PK_nivelAccesoId(nivelAccesoId)
+);
+
 -- Usuarios(usuario, contraseña, nivelAcceso)
 create table  Usuario(
 	usuarioId int not null auto_increment,
@@ -161,8 +171,3 @@ create table  Usuario(
 );
 
 -- Nivel de Acceso
-create table NivelesAcceso(
-	nivelAccesoId int not null auto_increment,
-    nivelAcceso varchar(40) not null,
-    primary key PK_nivelAccesoId(nivelAccesoId)
-);

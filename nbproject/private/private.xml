@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024%203%20(2)/IN5CV-Proyecto-superKinal2024%203/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuFacturaController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024%203%20(2)/IN5CV-Proyecto-superKinal2024%203/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/Producto.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024%203%20(2)/IN5CV-Proyecto-superKinal2024%203/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/model/TicketSoporte.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024%203%20(2)/IN5CV-Proyecto-superKinal2024%203/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/FormProductosController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024%203%20(2)/IN5CV-Proyecto-superKinal2024%203/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuTicketSoporteController.java</file>
-            <file>file:/C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024%203%20(2)/IN5CV-Proyecto-superKinal2024%203/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuProductosController.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/Repositorios%20github/IN5CV-Proyecto-superKinal2024%204/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/system/Main.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/Repositorios%20github/IN5CV-Proyecto-superKinal2024%204/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/LoginController.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/Repositorios%20github/IN5CV-Proyecto-superKinal2024%204/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/dao/Conexion.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/Repositorios%20github/IN5CV-Proyecto-superKinal2024%204/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/ResgistrarUsuarioController.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/Repositorios%20github/IN5CV-Proyecto-superKinal2024%204/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuClientesController.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/Repositorios%20github/IN5CV-Proyecto-superKinal2024%204/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/controller/MenuDetalleFacturasController.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/Repositorios%20github/IN5CV-Proyecto-superKinal2024%204/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/utils/PasswordUtils.java</file>
+            <file>file:/C:/Users/Informatica/Desktop/Repositorios%20github/IN5CV-Proyecto-superKinal2024%204/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/report/GenerarReporte.java</file>
         </group>
     </open-files>
 </project-private>
