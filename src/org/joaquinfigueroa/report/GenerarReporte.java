@@ -77,4 +77,24 @@ public class GenerarReporte {
             System.out.println(e.getMessage());
         }
     }
+    
+    public void generarProductos(){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            Map<String, Object>parametros = new HashMap<>();
+            InputStream jasperPath = GenerarReporte.class.getResourceAsStream("/org/joaquinfigueroa/report/Productos.jasper");
+            JasperPrint reporte = JasperFillManager.fillReport(jasperPath, parametros, conexion);
+            Stage reportStage = new Stage();
+            JRViewerFX reportViewer = new JRViewerFX(reporte);
+            Pane root = new Pane();
+            root.getChildren().add(reportViewer);
+            reportViewer.setPrefSize(1000, 800);
+            Scene scene = new Scene(root);
+            reportStage.setScene(scene);
+            reportStage.setTitle("Productos");
+            reportStage.show();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 }

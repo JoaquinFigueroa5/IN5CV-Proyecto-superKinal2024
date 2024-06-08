@@ -38,6 +38,7 @@ import javafx.scene.input.TransferMode;
 import org.joaquinfigueroa.dao.Conexion;
 import org.joaquinfigueroa.dto.ProductoDTO;
 import org.joaquinfigueroa.model.Producto;
+import org.joaquinfigueroa.report.GenerarReporte;
 import org.joaquinfigueroa.system.Main;
 import org.joaquinfigueroa.utils.SuperKinalAlert;
 
@@ -68,7 +69,7 @@ public class MenuProductosController implements Initializable {
     ComboBox cmbDistribuidor, cmbCategoria;
     
     @FXML
-    Button btnAgregar, btnEliminar, btnRegresar, btnEditar, btnBuscar;
+    Button btnAgregar, btnEliminar, btnRegresar, btnEditar, btnBuscar, btnReporte;
     
     
     @FXML
@@ -117,6 +118,8 @@ public class MenuProductosController implements Initializable {
                     colDistribuidor.setCellValueFactory(new PropertyValueFactory<Producto, String>("distribuidor"));
                     colCategoria.setCellValueFactory(new PropertyValueFactory<Producto, String>("categoria"));
                 }
+            }else if(event.getSource() == btnReporte){
+                GenerarReporte.getInstance().generarProductos();
             }
             
         }catch(Exception e){

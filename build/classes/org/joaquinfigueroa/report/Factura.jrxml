@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Factura" pageWidth="400" pageHeight="800" columnWidth="360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c65032a8-5ac3-417e-b0b1-464966b95001">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBSuperKinal"/>
@@ -95,7 +95,7 @@ where F.facturaId = $P{factId}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="120" splitType="Stretch">
+		<band height="130" splitType="Stretch">
 			<staticText>
 				<reportElement x="120" y="20" width="220" height="70" uuid="e4963255-6f34-4bf9-9389-7cb069f51e66"/>
 				<textElement textAlignment="Center">
@@ -104,8 +104,8 @@ where F.facturaId = $P{factId}]]>
 				<text><![CDATA[Factura]]></text>
 			</staticText>
 			<image>
-				<reportElement x="-10" y="0" width="120" height="120" uuid="1cbd036f-032b-4ad9-8ad9-035b28c073fd"/>
-				<imageExpression><![CDATA["C:/Users/Informatica/Desktop/Repositorios github/IN5CV-Proyecto-superKinal2024 4/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/image/Logooo.jpg"]]></imageExpression>
+				<reportElement x="5" y="0" width="115" height="115" uuid="ec562149-27bd-43a9-a728-9c0faacd1106"/>
+				<imageExpression><![CDATA["C:/Users/Joaki/Desktop/Repositorio/IN5CV-Proyecto-superKinal2024/src/org/joaquinfigueroa/image/Logito.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -126,7 +126,7 @@ where F.facturaId = $P{factId}]]>
 				<textFieldExpression><![CDATA["Fecha : "  + new SimpleDateFormat("dd/MM/yyyy").format($F{fecha})]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="40" width="100" height="30" uuid="d897056b-e7db-460b-821d-223d3013853e"/>
+				<reportElement x="220" y="40" width="150" height="30" uuid="d897056b-e7db-460b-821d-223d3013853e"/>
 				<textElement>
 					<font size="16"/>
 				</textElement>
@@ -144,7 +144,7 @@ where F.facturaId = $P{factId}]]>
 				<textFieldExpression><![CDATA["Dirección: " + $F{direccion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="-10" y="40" width="100" height="28" uuid="e244186f-5992-4cd2-954d-405759420d07"/>
+				<reportElement x="0" y="40" width="100" height="28" uuid="e244186f-5992-4cd2-954d-405759420d07"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>

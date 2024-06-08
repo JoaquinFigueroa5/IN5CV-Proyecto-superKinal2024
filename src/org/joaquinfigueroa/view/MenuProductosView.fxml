@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuProductosController">
+<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.joaquinfigueroa.controller.MenuProductosController">
    <children>
       <ImageView fitHeight="616.0" fitWidth="884.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -37,7 +37,7 @@
          </image>
       </ImageView>
       <Button fx:id="btnAgregar" layoutX="67.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="86.0" style="-fx-background-radius: 10; -fx-background-color: #F98F4B;" text="Agregar" />
-      <Button fx:id="btnReporte" layoutX="454.0" layoutY="423.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="86.0" style="-fx-background-radius: 10; -fx-background-color: #237092;" text="Reporte" />
+      <Button fx:id="btnReporte" layoutX="454.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="86.0" style="-fx-background-radius: 10; -fx-background-color: #237092;" text="Reporte" />
       <Button fx:id="btnEliminar" layoutX="190.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="86.0" style="-fx-background-radius: 10; -fx-background-color: #237092;" text="Eliminar" />
       <Button fx:id="btnRegresar" layoutX="577.0" layoutY="423.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="86.0" style="-fx-background-radius: 10; -fx-background-color: #F98F4B;" text="Regresar" />
       <ImageView fx:id="imgMostrar" fitHeight="230.0" fitWidth="200.0" layoutX="671.0" layoutY="168.0" onDragDropped="#handleOnDrop" onDragOver="#handleOnDrag" pickOnBounds="true" preserveRatio="true" />
